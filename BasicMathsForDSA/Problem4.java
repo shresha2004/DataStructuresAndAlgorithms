@@ -1,12 +1,13 @@
 class Solution{
     public boolean isAmstrong(int x){
         int number =x;
+       int noOfDigit=(int) Math.log10(x)+1;
         boolean amstrong=false;
       int  amstrongNumber=0;
         while(number > 0){
             int digit =number%10;
             
-            amstrongNumber=(amstrongNumber)+ (int) Math.pow(digit,3);
+            amstrongNumber=(amstrongNumber)+ (int) Math.pow(digit,noOfDigit);
           
             number=number/10;
         }
