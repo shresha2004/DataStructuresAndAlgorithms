@@ -1,3 +1,4 @@
+//Problem : https://www.geeksforgeeks.org/problems/sum-of-all-divisors-from-1-to-n4738/1
 class Solution{
     public long sumOfDivisors(int N){
         long sum =0;
