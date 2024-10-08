@@ -1,3 +1,4 @@
+//Problem:https://www.geeksforgeeks.org/problems/print-1-to-n-without-using-loops-1587115620/1
 class Solution
 {
     int count =0;
