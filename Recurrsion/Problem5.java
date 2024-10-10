@@ -8,8 +8,7 @@ class Solution {
         while( count<=n ){
              s.add(count);
              i++;
-            count =count*i;
-           
+            count =count*i;  
         }
         return s;
     }
