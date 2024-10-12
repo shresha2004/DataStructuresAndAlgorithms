@@ -1,3 +1,4 @@
+//Problem:https://www.geeksforgeeks.org/problems/lcm-and-gcd4516/1
 import java.util.Arrays;
 
 class Solution {
