@@ -1,7 +1,8 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 class Solution
 {
-    ArrayList<Integer> merge(int arr[], int l, int m, int r)
+    int[] merge(int arr[], int l, int m, int r)
     {
         
          // Your code here
@@ -28,17 +29,19 @@ class Solution
              temp.add(arr[right]);
              right++;
          }
-
-         return temp;
+         for (int i = 0; i < temp.size(); i++) {
+            arr[l + i] = temp.get(i);
+        }
+         return arr;
     }
     void mergeSort(int arr[], int l, int r)
     {
         //code here
-        if(l>r) return;
+        if(l==r) return;
         int mid=(l+r)/2;
         mergeSort(arr,l,mid);
         mergeSort(arr,mid+1,r);
-        System.out.println(merge(arr,l,mid,r));
+        System.out.println(Arrays.toString(merge(arr,l,mid,r)));
     }
 }
 
