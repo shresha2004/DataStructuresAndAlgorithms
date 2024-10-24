@@ -8,7 +8,7 @@ class Solution {
         int k=0;
 
         for( i=0;i<n;i++){
-           // k++;
+          
             if(nums[i]==val){
                 j=i;
                
