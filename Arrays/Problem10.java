@@ -1,3 +1,4 @@
+//Problem:https://leetcode.com/problems/single-number/description/
 import java.util.HashMap;
 class Solution {
     public int singleNumber(int[] nums) {
