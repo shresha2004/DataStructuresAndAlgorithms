@@ -34,6 +34,7 @@ class Solution{
         if(nums[j]<nums[min]){
             min=j;
         }
+        
     }
     if(min!=i){
         int temp=nums[i];
@@ -41,8 +42,10 @@ class Solution{
         nums[min]=temp;
 
     }
+    
     }
-    System.out.println(Arrays.toString(nums));
+    
+    
   int left=0;
   int right=n-1;
   int i=0;
