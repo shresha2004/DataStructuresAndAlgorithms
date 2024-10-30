@@ -59,7 +59,7 @@ class Solution {
             if(nums[i]!=Candidate) count--;
         }
 
-        //Verification
+        //Verification (No need if the majority element always exists is mentioned)
         int count1=0;
         for(int i=0;i<n;i++){
             if(nums[i]==Candidate){
