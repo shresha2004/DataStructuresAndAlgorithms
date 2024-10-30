@@ -46,27 +46,27 @@ class Solution {
     public int majorityElementOptimal(int[] nums) {
         int n=nums.length;
         int count=0;
-        int ele=0;
+        int Candidate=0;
         
         for(int i=0;i<n;i++){
             if(count==0){
                 count=1;
-                ele=nums[i];
+                Candidate=nums[i];
 
-            }else if(nums[i]==ele){
+            }else if(nums[i]==Candidate){
                 count++;
             }
-            if(nums[i]!=ele) count--;
+            if(nums[i]!=Candidate) count--;
         }
 
         //Verification
         int count1=0;
         for(int i=0;i<n;i++){
-            if(nums[i]==ele){
+            if(nums[i]==Candidate){
                 count1++;
             }
             if(count1>n/2){
-                return ele;
+                return Candidate;
             }
         }
         return -1;
