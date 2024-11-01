@@ -42,7 +42,7 @@ public class Problem16 {
     public static void main(String[] args) {
         Solution s=new Solution();
         int[] nums ={-2,1,-3,4,-1,2,1,-5,4};
-        System.out.println(s.maxSubArrayBruteForce(nums));
-        System.out.println(s.maxSubArrayOptimal(nums));
+        System.out.println("Brute force:"+s.maxSubArrayBruteForce(nums));
+        System.out.println("Optimal:"+s.maxSubArrayOptimal(nums));
     }
 }
