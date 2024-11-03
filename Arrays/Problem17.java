@@ -26,6 +26,21 @@ class Solution {
         
         return arr;
     }
+
+    public int[] plusOneOptimal(int[] digits) {
+       
+        int n= digits.length;
+        for(int i=n-1;i>-1;i--){
+            if(digits[i]<9){
+                digits[i]+=1;
+                return digits;
+            }
+            digits[i]=0;
+        }
+        int[]  result=new int[n+1];
+        result[0] =1;
+        return result;
+        }
 }
 
 public class Problem17 {
@@ -33,6 +48,7 @@ public class Problem17 {
         int[] digits = {1,2,3};
         Solution s= new Solution();
         System.out.println(Arrays.toString(s.plusOneBruteForce(digits)));
+        System.out.println(Arrays.toString(s.plusOneOptimal(digits)));
     }
     
 }
