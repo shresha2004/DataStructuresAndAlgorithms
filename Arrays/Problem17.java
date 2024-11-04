@@ -47,8 +47,8 @@ public class Problem17 {
     public static void main(String[] args) {
         int[] digits = {1,2,3};
         Solution s= new Solution();
-        System.out.println(Arrays.toString(s.plusOneBruteForce(digits)));
-        System.out.println(Arrays.toString(s.plusOneOptimal(digits)));
+        System.out.println("BruteForce:"+Arrays.toString(s.plusOneBruteForce(digits)));
+        System.out.println("Optimal:"+Arrays.toString(s.plusOneOptimal(digits)));
     }
     
 }
