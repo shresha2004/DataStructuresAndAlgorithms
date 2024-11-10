@@ -1,5 +1,5 @@
-
 //Problem:https://leetcode.com/problems/contains-duplicate/description/?envType=problem-list-v2&envId=array&difficulty=EASY
+import java.util.HashMap;
 class Solution {
     public boolean containsDuplicateBruteForce(int[] nums) {
         int n=nums.length;
@@ -10,6 +10,19 @@ class Solution {
         }
      return false;   
     }
+
+    public boolean containsDuplicateBetter(int[] nums) {
+        int n=nums.length;
+        HashMap<Integer,Integer> map= new HashMap<>();
+        for(int i=0;i<n;i++){
+           map.put(nums[i],map.getOrDefault(nums[i],0)+1);
+            if(map.get(nums[i])>1){
+                return true;
+            }
+
+        }
+     return false;   
+    }
 }
 
 public class Problem22 {
@@ -17,6 +30,6 @@ public class Problem22 {
         Solution s=new Solution();
        int[] nums = {1,2,3,1};
       System.out.println("BruteForce:"+s.containsDuplicateBruteForce(nums));
-     // System.out.println("Better:"+Arrays.toString(s.rearrangeArrayBetter(nums)));
+     System.out.println("Better:"+s.containsDuplicateBetter(nums));
     }
 }
