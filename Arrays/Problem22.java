@@ -29,7 +29,7 @@ public class Problem22 {
      public static void main(String[] args) {
         Solution s=new Solution();
        int[] nums = {1,2,3,1};
-      System.out.println("BruteForce:"+s.containsDuplicateBruteForce(nums));
-     System.out.println("Better:"+s.containsDuplicateBetter(nums));
+      System.out.println("BruteForce Approach:"+s.containsDuplicateBruteForce(nums));
+     System.out.println("Better Approach:"+s.containsDuplicateBetter(nums));
     }
 }
