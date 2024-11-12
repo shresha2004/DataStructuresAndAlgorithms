@@ -1,5 +1,6 @@
 //Problem:https://leetcode.com/problems/contains-duplicate/description/?envType=problem-list-v2&envId=array&difficulty=EASY
 import java.util.HashMap;
+import java.util.HashSet;
 class Solution {
     public boolean containsDuplicateBruteForce(int[] nums) {
         int n=nums.length;
@@ -23,6 +24,17 @@ class Solution {
         }
      return false;   
     }
+
+    public boolean containsDuplicateOptimal(int[] nums) {
+        int len=nums.length;
+       HashSet<Integer> set= new HashSet<>();
+        for(int num: nums){
+            if(!set.add(num)){
+                return true;
+            }
+        }  
+     return false;   
+    }
 }
 
 public class Problem22 {
@@ -31,5 +43,6 @@ public class Problem22 {
        int[] nums = {1,2,3,1};
       System.out.println("BruteForce Approach:"+s.containsDuplicateBruteForce(nums));
      System.out.println("Better Approach:"+s.containsDuplicateBetter(nums));
+     System.out.println("Optimal Approach:"+s.containsDuplicateOptimal(nums));
     }
 }
