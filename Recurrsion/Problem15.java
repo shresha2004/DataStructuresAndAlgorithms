@@ -18,7 +18,7 @@ class Solution {
        }
     }
 }
-public class Problem25 {
+public class Problem15 {
      public static void main(String[] args) {
         Solution s=new Solution();
        
