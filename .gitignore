@@ -1,0 +1,43 @@
+# Bytecode files
+*.class
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# Logs and temporary files
+*.log
+*.tmp
+*.out
+
+# Compiled source
+/bin/
+/target/
+
+# IDE specific files (e.g., IntelliJ, Eclipse, NetBeans)
+*.iml
+.idea/
+*.classpath
+*.project
+*.settings/
+*.vscode/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Miscellaneous
+*.swp
+*.bak
+*.old
+*.orig
+
+# Generated documentation
+/doc/
+
+# Other exclusions
+*.lock
+*.gz
+*.zip
+*.tar
