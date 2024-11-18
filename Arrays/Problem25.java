@@ -27,6 +27,7 @@ public class Problem25 {
         Solution s=new Solution();
        int[] nums = {16, 17, 4, 3, 5, 2};
       System.out.println("BruteForce Approach:"+s.leadersBruteForce(nums));
+      System.out.println("Optimal Approach:"+s.leadersBruteForce(nums));
      
      
     }
