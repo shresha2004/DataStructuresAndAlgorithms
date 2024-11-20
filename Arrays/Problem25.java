@@ -21,13 +21,34 @@ class Solution {
         nums.add(arr[n-1]);
         return nums;
     }
+
+    static ArrayList<Integer> leadersOptimal(int arr[]) {
+        // code here
+        int n=arr.length;
+        ArrayList<Integer> nums=new ArrayList<>();
+        if(n==0) return nums;
+        if(n>1){
+           int max=Integer.MIN_VALUE;
+          
+        for(int i=n-1;i>=0;i--){
+            
+             max=Math.max(max,arr[i]);
+             System.out.println(max);
+             if(max==arr[i]){
+                 nums.add(max);
+             }
+            }
+        }
+        
+        return nums;
+    }
 }
 public class Problem25 {
      public static void main(String[] args) {
         Solution s=new Solution();
        int[] nums = {16, 17, 4, 3, 5, 2};
       System.out.println("BruteForce Approach:"+s.leadersBruteForce(nums));
-    //  System.out.println("Optimal Approach:"+s.leadersOptimal(nums));
+     System.out.println("Optimal Approach:"+s.leadersOptimal(nums));
     
      
      
