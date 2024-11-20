@@ -33,7 +33,6 @@ class Solution {
         for(int i=n-1;i>=0;i--){
             
              max=Math.max(max,arr[i]);
-             System.out.println(max);
              if(max==arr[i]){
                  nums.add(max);
              }
