@@ -60,14 +60,50 @@ class Solution {
             }
             return matrix;
     }
+    public int[][] setZeroesOptimal(int[][] matrix) {
+        int m=matrix.length;
+        int n=matrix[0].length;
+        int col0=1;
+      
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+              
+               if(matrix[i][j]==0){
+               matrix[i][0]=0;
+               if(j!=0)
+                matrix[0][j]=0;
+                else col0=0;
+                
+
+               }
+            }
+        }
+       for(int i=m-1;i>=0;i--){
+            for(int j=n-1;j>=1;j--){
+                
+                   if(matrix[0][j] == 0 || matrix[i][0]==0){
+                    matrix[i][j]=0;
+                   }
+                
+            }
+            if(col0==0){
+                matrix[i][0]=0;
+            }
+            }
+      
+     return matrix;
+
+    }
 }
 public class Problem27 {
     public static void main(String[] args) {
         Solution s=new Solution();
        int[][] matrix0 = {{1,1,1},{1,0,1},{1,1,1}};
        int[][] matrix1 = {{1,1,1},{1,0,1},{1,1,1}};
+       int[][] matrix2 = {{1,1,1},{1,0,1},{1,1,1}};
     System.out.println("BruteForce Approach:"+Arrays.deepToString(s.setZeroesBruteForce(matrix0)));
     System.out.println("Better Approach:"+Arrays.deepToString(s.setZeroesBetter(matrix1)));
+    System.out.println("Optimal Approach:"+Arrays.deepToString(s.setZeroesOptimal(matrix2)));
     
  
     }
