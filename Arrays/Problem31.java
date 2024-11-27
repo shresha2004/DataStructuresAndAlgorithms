@@ -1,3 +1,5 @@
+import java.util.List;
+import java.util.ArrayList;
 class Solution{
     //When question is asked to fill the ele in perticular row and col
     public int givenRowAndCol(int row,int col){
@@ -22,6 +24,25 @@ class Solution{
             System.out.print(" "+ans);
         }
     }
+
+//Problem:https://leetcode.com/problems/pascals-triangle/description/
+
+    public List<List<Integer>> generatePascalsTriangle(int numRows) {
+        List<List<Integer>> finalArray= new ArrayList<>();
+        for(int row=1;row<=numRows;row++){
+          ArrayList<Integer> arr=new ArrayList<>();
+          int ans=1;
+            arr.add(ans);
+            for(int j=1;j<row;j++){
+                ans=ans*(row-j);
+                ans=ans/j;
+                arr.add(ans);
+            }
+           finalArray.add(arr);
+        }
+        return finalArray;
+        
+    }
 }
 public class Problem31 {
     public static void main(String[] args) {
@@ -30,6 +51,8 @@ public class Problem31 {
     System.out.println("When Row and Column is given:"+s.givenRowAndCol(5,3));
     System.out.println("Element of the given row:");
     s.printRowElements(6);
+    System.out.println();
+    System.out.println("Generate a pascal's triangle:"+s.generatePascalsTriangle(6));
    
  
     }
