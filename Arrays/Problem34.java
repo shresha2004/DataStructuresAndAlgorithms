@@ -107,6 +107,7 @@ public class Problem34 {
     System.out.println("Brute Force Approach:"+ s.threeSumBruteForce(nums).toString());
     System.out.println("Better Approach:"+ s.threeSumBetter(nums).toString());
     System.out.println("Optimal Approach:"+ s.threeSumBetter(nums).toString());
+  //  System.out.println("Optimal Approach:"+ s.threeSumBetter(nums).toString());
    
  
     }
