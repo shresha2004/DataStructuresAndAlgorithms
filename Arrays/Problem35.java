@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Arrays;
 class Solution {
     public List<List<Integer>> fourSumBruteForce(int[] nums, int target) {
         int n= nums.length;
@@ -52,6 +53,42 @@ class Solution {
 
         return ans;
     }
+    public List<List<Integer>> fourSumOptimal(int[] nums, int target) {
+        int n= nums.length;
+        List<List<Integer>> ans = new ArrayList<>();
+        Arrays.sort(nums);
+        for(int i=0;i<n; i++){
+            if(i>0 && nums[i]==nums[i-1]) continue;
+            for(int j=i+1;j<n;j++){
+                if(j>i+1 && nums[j]==nums[j-1]) continue;
+                int k=j+1;
+                int l=n-1;
+                while(k<l){
+                    long sum = nums[i];
+                    sum+=nums[j];
+                    sum+=nums[k];
+                    sum+=nums[l];
+                    if(sum == target){
+                        ArrayList<Integer> ls= new ArrayList<>();
+                        ls.add(nums[i]);
+                        ls.add(nums[j]);
+                        ls.add(nums[k]);
+                        ls.add(nums[l]);
+                      if(!ans.contains(ls))  ans.add(ls);
+                    k++;
+                    l--;
+                    
+                    while(k<l && nums[k]==nums[k-1]) k++;
+                    while(k<l && nums[l]==nums[l+1]) l--;
+                    }
+                    else if(sum<target) k++;
+                    else l--;
+                }
+            }
+        }
+        return ans;
+    }
+
    public List<Integer> sort(List<Integer> arr ){
         int n= arr.size();
 
@@ -81,6 +118,7 @@ public class Problem35 {
 
     System.out.println("Brute force Approach:"+(s.fourSumBruteForce(nums, target).toString()));
     System.out.println("Better force Approach:"+(s.fourSumBetter(nums, target).toString()));
+    System.out.println("Better force Approach:"+(s.fourSumOptimal(nums, target).toString()));
  
     }
 }
