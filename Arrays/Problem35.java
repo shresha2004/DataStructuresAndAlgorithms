@@ -123,6 +123,7 @@ public class Problem35 {
  //   System.out.println("Better force Approach:"+(s.fourSumOptimal(nums, target).toString()));
  //   System.out.println("Better force Approach:"+(s.fourSumOptimal(nums, target).toString()));
  //   System.out.println("Better force Approach:"+(s.fourSumOptimal(nums, target).toString()));
+//   System.out.println("Better force Approach:"+(s.fourSumOptimal(nums, target).toString()));
  
     }
 }
