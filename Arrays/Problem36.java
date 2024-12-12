@@ -47,6 +47,5 @@ public class Problem36 {
        int[] nums = {-1,0,1,2,-1,-4};
     System.out.println("Brute Force Approach:"+ s.maxLenBruteForce(nums));
     System.out.println("Optimal Approach:"+ s.maxLenOptimal(nums));
-    // System.out.println("Optimal Approach:"+ s.threeSumBetter(nums).toString());
     }
 }
