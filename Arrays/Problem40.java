@@ -53,6 +53,35 @@ class Solution {
         
         return ans;
     }
+    ArrayList<Integer> findTwoElementOptimal1(int arr[]) {
+        // code here
+        ArrayList<Integer> ans= new ArrayList<>();
+       
+        int n=arr.length;
+        long S= (long) n*(n+1)/2;
+        long S2 =(long) n*(n+1) * (2*n+1)/6;
+        
+        
+        long SN=0;
+        long S2N=0;
+        
+        for(int i=0;i<n;i++){
+            SN+=arr[i];
+            S2N+= (long)  arr[i] *  arr[i];
+            
+        }
+        long val1= S-SN;
+        long val2=S2-S2N;
+        val2 = val2/val1;
+        long x= (val2+val1)/2;
+        long y=x-val1;
+        ans.add((int) y);
+        ans.add((int)x);
+       
+        
+        
+        return ans;
+    }
 }
 public class Problem40 {
     public static void main(String[] args) {
@@ -60,6 +89,7 @@ public class Problem40 {
         int[] arr = {2, 2};
        System.out.println("Brute Force Approach:"+s.findTwoElementBruteForce(arr)); 
        System.out.println("Better Approach:"+s.findTwoElementBetter(arr)); 
+       System.out.println("Optimal Approach 1:"+s.findTwoElementOptimal1(arr)); 
 
     }
 }
