@@ -82,6 +82,55 @@ class Solution {
         
         return ans;
     }
+    ArrayList<Integer> findTwoElementOptimal2(int arr[]) {
+        ArrayList<Integer> ans = new ArrayList<>();
+        int zero = 0;
+        int one = 0;
+
+        int n = arr.length;
+        int xr = 0;
+
+        // Compute XOR of all elements in arr and 1 to n
+        for (int i = 0; i < n; i++) {
+            xr = xr ^ arr[i];
+            xr = xr ^ (i + 1);
+        }
+
+        // Find the rightmost set bit in the XOR result
+        int number = (xr & ~(xr - 1));
+
+        // Divide numbers into two groups and XOR them
+        for (int i = 0; i < n; i++) {
+            if ((arr[i] & number) != 0) {
+                one = one ^ arr[i];
+            } else {
+                zero = zero ^ arr[i];
+            }
+        }
+        for (int i = 1; i <= n; i++) {
+            if ((i & number) != 0) {
+                one = one ^ i;
+            } else {
+                zero = zero ^ i;
+            }
+        }
+
+        // Check which is the repeating and which is the missing number
+        int count = 0;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] == zero) count++;
+        }
+
+        if (count == 2) {
+            ans.add(zero); // Repeating number
+            ans.add(one);  // Missing number
+        } else {
+            ans.add(one);  // Repeating number
+            ans.add(zero); // Missing number
+        }
+
+        return ans;
+    }
 }
 public class Problem40 {
     public static void main(String[] args) {
@@ -90,6 +139,7 @@ public class Problem40 {
        System.out.println("Brute Force Approach:"+s.findTwoElementBruteForce(arr)); 
        System.out.println("Better Approach:"+s.findTwoElementBetter(arr)); 
        System.out.println("Optimal Approach 1:"+s.findTwoElementOptimal1(arr)); 
+       System.out.println("Optimal Approach 2:"+s.findTwoElementOptimal2(arr)); 
 
     }
 }
