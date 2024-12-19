@@ -64,7 +64,6 @@ public class Problem41 {
         Solution s= new Solution();
         int[] arr = {2, 4, 1, 3, 5};
        System.out.println("Brute Force Approach:"+s.inversionCountBruteForce(arr)); 
-      System.out.println("Better Approach:"+s.inversionCountOptimal(arr)); 
-       //System.out.println("Optimal Approach 1:"+s.findTwoElementOptimal1(arr));
+      System.out.println("Optimal Approach:"+s.inversionCountOptimal(arr)); 
     }
 }
