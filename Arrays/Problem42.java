@@ -1,3 +1,4 @@
+//problem: https://leetcode.com/problems/reverse-pairs/description/
 class Solution {
     public int reversePairsBruteForce(int[] nums) {
         int n =nums.length;
