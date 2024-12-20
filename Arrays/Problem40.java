@@ -1,5 +1,6 @@
+//Problem:https://www.geeksforgeeks.org/problems/find-missing-and-repeating2512/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=find-missing-and-repeating
 import java.util.ArrayList;
-import java.util.Arrays;
+
 class Solution {
     // Function to find two elements in array
     ArrayList<Integer> findTwoElementBruteForce(int arr[]) {
