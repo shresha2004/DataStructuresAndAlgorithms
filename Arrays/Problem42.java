@@ -24,7 +24,7 @@ class Solution {
         int count = 0;
         if(low<high){
            int mid=(low+high)/2;
-        count += mergeSort(nums,low,mid);
+        count +=  mergeSort(nums,low,mid);
       count += mergeSort(nums,mid+1,high);
         count += countPairs(nums,low,mid,high);
         merge(nums,low,mid,high);
