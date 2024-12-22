@@ -31,6 +31,25 @@ class Solution {
         }
         return product;
     }
+
+    public int maxProductOptimal(int[] nums) {
+        int n = nums.length;
+       
+        int product = Integer.MIN_VALUE;
+        int prefix=1;
+        int sufix=1;
+        
+        for(int i=0;i<n;i++){
+             if(prefix==0) prefix=1;
+             if(sufix==0) sufix=1;
+
+             prefix *= nums[i];
+             sufix *= nums[n-i-1];
+             product=Math.max(product,Math.max(prefix,sufix));
+            
+        }
+        return product;
+    }
 }
 public class Problem43 {
     public static void main(String[] args) {
@@ -38,7 +57,7 @@ public class Problem43 {
         int[] arr = {2,3,-2,4};
        System.out.println("Brute Force Approach:"+s.maxProductBruteForce(arr)); 
        System.out.println("Better Force Approach:"+s.maxProductBetter(arr)); 
-  // System.out.println("Optimal Approach:"+s.reversePairsOptimal(arr)); 
+     System.out.println("Optimal Approach:"+s.maxProductOptimal(arr)); 
     }
     
 }
