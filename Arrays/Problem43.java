@@ -58,6 +58,7 @@ public class Problem43 {
        System.out.println("Brute Force Approach:"+s.maxProductBruteForce(arr)); 
        System.out.println("Better Force Approach:"+s.maxProductBetter(arr)); 
      System.out.println("Optimal Approach:"+s.maxProductOptimal(arr)); 
+     System.out.println("Optimal Approach:"+s.maxProductOptimal(arr)); 
     }
     
 }
