@@ -1,3 +1,4 @@
+package LinearSearch;
 //Problem:https://www.geeksforgeeks.org/problems/who-will-win-1587115621/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=who-will-win
 
 class Solution {
