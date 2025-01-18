@@ -1,7 +1,7 @@
 package BinarySearch;
 //Problem:https://www.geeksforgeeks.org/problems/floor-in-a-sorted-array-1587115620/1?track=DSASP-Searching&amp%253BbatchId=154&utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=floor-in-a-sorted-array
 class Solution{
-    public int findFloorBruteForce(int[] arr, int k) {
+    public int findFloorMyBruteForce(int[] arr, int k) {
         
         int n=arr.length;
         int largeEle = Integer.MIN_VALUE;
@@ -53,7 +53,7 @@ public class Problem2 {
     public static void main(String[] args) {
         Solution s = new Solution();
         int[] arr={1, 2, 8, 10, 11, 12, 19};
-        System.out.println("BruteForce:"+s.findFloorBruteForce(arr, 5));
+        System.out.println("BruteForce:"+s.findFloorMyBruteForce(arr, 5));
         System.out.println("My Optimal:"+s.findFloorMyOptimal(arr, 5));
         
     }
