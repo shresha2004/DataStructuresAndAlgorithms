@@ -26,7 +26,7 @@ public class Problem3 {
         int[] arr={1 ,2, 2, 3, 3 ,5};
         int x = 0;
         int n = 6;
-        System.out.println("BruteForce:"+s.lowerBound(arr,n,x));
+        System.out.println("Optimal:"+s.lowerBound(arr,n,x));
       
         
     }
