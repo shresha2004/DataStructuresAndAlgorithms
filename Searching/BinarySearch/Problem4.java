@@ -121,7 +121,7 @@ public class Problem4 {
         int[] arr={5, 6, 8, 8, 6, 5, 5, 6};
         int x = 10;
         System.out.println("My BruteForce:"+ Arrays.toString(s.getFloorAndCeilMyBruteForce(x,arr)));
-        System.out.println("My BruteForce:"+ Arrays.toString(s.getFloorAndCeilMyOptimal(x,arr)));
+        System.out.println("My Optimal:"+ Arrays.toString(s.getFloorAndCeilMyOptimal(x,arr)));
  
     }
 }
