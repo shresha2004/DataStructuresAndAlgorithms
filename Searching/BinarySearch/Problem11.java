@@ -17,6 +17,33 @@ class Solution {
         }
         return index;
     }
+    
+    public int findKRotationOptimal(List<Integer> arr) {
+        // Code here
+        int n = arr.size();
+        int min =Integer.MAX_VALUE;
+        int index = 0;
+        int low = 0;
+        int high = n-1;
+        
+        //BinarySearch
+        while(low<= high){
+            int mid = (low+high)/2;
+            
+            if(arr.get(mid) >= arr.get(low)){
+                min = Math.min(min,arr.get(low));
+                index = arr.indexOf(min);
+                low = mid+1;
+            }
+            else if(arr.get(mid) <= arr.get(high)){
+                min = Math.min(min,arr.get(mid));
+                index = arr.indexOf(min);
+                high = mid-1;
+            }
+        }
+        
+        return index;
+    }
 }
 
 
@@ -28,6 +55,7 @@ public class Problem11 {
         List<Integer> ls = new ArrayList<Integer>();
         for(int i=0;i<arr.length;i++) ls.add(arr[i]);
         System.out.println("Brute Force:"+s.findKRotationBruteForce(ls));
+        System.out.println("Optimal:"+s.findKRotationBruteForce(ls));
 
     }
 }
