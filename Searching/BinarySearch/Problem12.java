@@ -1,5 +1,5 @@
 package BinarySearch;
-
+//Problem:https://leetcode.com/problems/single-element-in-a-sorted-array/description/
 class Solution {
     public int singleNonDuplicateBruteForce(int[] nums) {
         int n = nums.length;
