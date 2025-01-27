@@ -22,7 +22,7 @@ class Solution {
     //Binary Search
     while(low<= high){
         int mid = (low+high)/2;
-        int check = mid * mid;
+        long check =(long) mid * mid;//Type casting to avoid integer overflow
         if (check > n) {
             high = mid-1;
         }
