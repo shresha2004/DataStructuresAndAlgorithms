@@ -28,6 +28,7 @@ class Solution {
         }
         return ans;
     }
+
     public int[] intersectionBetter(int[] nums1, int[] nums2) {
         
        HashSet<Integer> arr = new HashSet<>();
@@ -48,6 +49,76 @@ class Solution {
         }
        return ansArr;
     }
+
+
+    public int[] intersectionOptimal(int[] nums1, int[] nums2) {
+        int n1 = nums1.length;
+        int n2 = nums2.length;
+        int left = 0;
+        int right = 0;
+        mergeSort(nums1,0,n1-1);
+        mergeSort(nums2,0,n2-1);
+        HashSet<Integer> set = new HashSet<>();
+        System.out.println("Sorted:"+Arrays.toString(nums1)+" "+Arrays.toString(nums2));
+ 
+        while( left<n1 && right<n2){
+         if(nums1[left] == nums2[right]){
+             set.add(nums1[left]);
+             left++;
+             right++;
+         }
+         else if(nums1[left] < nums2[right]){
+             left++;
+         }
+         else right++;
+        }
+         int[] ansArr = new int[set.size()];
+         int i = 0;
+         for(int num : set){
+             ansArr[i++] = num;
+         }
+        return ansArr;
+     }
+ 
+     private void mergeSort(int[] arr, int low,int high){
+         if(low >= high) return;
+         int mid = (low+high)/2;
+         mergeSort(arr,low,mid);
+         mergeSort(arr,mid+1,high);
+         merge(arr,low,mid,high);
+     }
+ 
+     private void merge(int[] arr,int low,int mid,int high){
+         
+         int left = low;
+         int right = mid+1;
+ 
+         ArrayList<Integer> temp = new ArrayList<>();
+         
+         while(left <= mid && right<= high){
+             if(arr[left] <= arr[right]){
+                 temp.add(arr[left]);
+                 left++;
+             }
+             else {
+                 temp.add(arr[right]);
+                 right++;
+             }
+         }
+          while(left <= mid){
+             temp.add(arr[left]);
+             left++;
+         }
+         while(right <= high){
+             temp.add(arr[right]);
+             right++;
+         }
+        
+ 
+         for(int i=0; i<temp.size();i++){
+             arr[low+i] = temp.get(i);
+         }
+     }
 }
 
 public class Problem44 {
@@ -57,5 +128,6 @@ public class Problem44 {
         int[]  nums2 = {2,2};
         System.out.println("Brute Force:"+Arrays.toString(s.intersectionBruteForce(nums1, nums2)));
         System.out.println("Better:"+Arrays.toString(s.intersectionBetter(nums1, nums2)));
+        System.out.println("Optimal:"+Arrays.toString(s.intersectionOptimal(nums1, nums2)));
     }
 }
