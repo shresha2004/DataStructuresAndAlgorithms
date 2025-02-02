@@ -2,15 +2,13 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
+import java.util.HashMap;
 class Solution {
     public int[] intersectBruteForce(int[] nums1, int[] nums2) {
         int n1 =  nums1.length;
         int n2 = nums2.length;
         mergeSort(nums1,0,n1-1);
         mergeSort(nums2,0,n2-1);
-        System.out.println("Sorted: "+Arrays.toString(nums1)+Arrays.toString(nums2));
-        
-        
         int left = 0;
         int right = 0;
         List<Integer> arr = new ArrayList<>();
@@ -31,8 +29,6 @@ class Solution {
             ansArr[index] = num;
             index++;
         }
-        
-       
         return ansArr;
     }
 
@@ -71,6 +67,25 @@ class Solution {
         j++;
        }
     }
+
+    public int[] intersectOptimal(int[] nums1, int[] nums2) {
+        int n1 = nums1.length;
+        int n2 = nums2.length;
+        HashMap<Integer,Integer> map = new HashMap<>();
+        List<Integer> arr = new ArrayList<>();
+ 
+        for(int num : nums1){
+         map.put(num,map.getOrDefault(num,0)+1);
+        }
+ 
+        for(int num : nums2){
+         if(map.getOrDefault(num,0) > 0){
+             arr.add(num);
+             map.put(num,map.get(num)-1);
+         }
+        }
+        return arr.stream().mapToInt(i -> i).toArray();
+     }
 }
 public class Problem47 {
     public static void main(String[] args) {
@@ -78,6 +93,7 @@ public class Problem47 {
         int[] nums1 = {1,2,2,1};
         int[] nums2 = {2,2};
 
-        System.out.println("My Brute Force:"+Arrays.toString(s.intersectBruteForce(nums1,nums2)));
+        System.out.println("Brute Force:"+Arrays.toString(s.intersectBruteForce(nums1,nums2)));
+        System.out.println("Optimal:"+Arrays.toString(s.intersectOptimal(nums1,nums2)));
     }
 }
