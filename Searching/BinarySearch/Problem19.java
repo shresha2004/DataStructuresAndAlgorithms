@@ -21,6 +21,33 @@ class Solution {
         return -1;
     }
 
+    public int minDaysOptimal(int[] bloomDay, int m, int k) {
+        int n = bloomDay.length;
+        long totalFlowersReq = (long) m*k;
+        if(n < totalFlowersReq) return -1;
+        
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        for(int i = 0;i<n;i++){
+            min = Math.min(bloomDay[i],min);
+            max = Math.max(bloomDay[i],max);
+        }
+        int low = min;
+        int high = max;
+        while(low <= high){
+            int mid = (low+high)/2;
+            if(possible(bloomDay,mid,k,m)) {
+               
+                high = mid - 1;
+            }
+            else{
+                low = mid+1;
+            }
+        
+        }
+        return low;
+    }
+
     private boolean possible(int[] bloomDay, int day,int k, int m){
         int n = bloomDay.length;
         int count =0;
@@ -46,5 +73,6 @@ public class Problem19 {
       int m = 3;
       int  k = 1;
         System.out.println("Brute Force:"+s.minDaysBruteForce(bloomDay,m,k));
+        System.out.println("Optimal:"+s.minDaysOptimal(bloomDay,m,k));
     }
 }
