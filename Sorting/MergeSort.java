@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import LinearSearch.Solution;
+
 class Solution
 {
     int[] merge(int arr[], int l, int m, int r)
