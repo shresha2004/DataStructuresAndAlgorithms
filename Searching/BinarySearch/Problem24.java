@@ -13,6 +13,14 @@ class Solution {
         }
        return 0; 
     }
+    public int arrangeCoinsBetter(int n) {
+        int row = 0;
+        while((row+1) <= n){
+            row++; 
+            n -= row;
+        }
+       return row; 
+    }
 }
 
 public class Problem24 {
@@ -20,6 +28,7 @@ public class Problem24 {
         Solution s = new Solution();
       int  n = 10;
         System.out.println("My Brute Force:"+s.arrangeCoinsMyBruteForce(n));
+        System.out.println("Better:"+s.arrangeCoinsBetter(n));
         
     }
 }
