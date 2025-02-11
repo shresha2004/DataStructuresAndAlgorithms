@@ -5,7 +5,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 class Solution {
-    public int thirdMaxbruteForce(int[] nums) {
+    public int thirdMaxBruteForce(int[] nums) {
         int n = nums.length;
         int count = 0;
         mergeSort(nums,0,n-1);
@@ -19,6 +19,31 @@ class Solution {
         }
         return nums[n-1];
     }
+
+    public int thirdMaxOptimal(int[] nums) {
+        Integer first = null;
+        Integer second = null;
+        Integer third = null;
+        Integer n =  nums.length;
+        for(Integer num : nums){
+         if(num.equals(first) || num.equals(second) || num.equals(third)) continue;
+ 
+         if(first == null || num > first){
+             third = second;
+             second = first;
+             first = num;
+         }
+         else if( second == null || num > second){
+             third = second;
+             second = num;
+         }
+         else if ( third == null || num > third){
+             third = num;
+         }
+        }
+ 
+        return (third == null) ? first : third;
+     }
 
     private void mergeSort(int[] nums,int low,int high){
         if(high <= low) return;
@@ -64,6 +89,7 @@ public class Problem48 {
         Solution s = new Solution();
         int[] nums = {3,2,1};
 
-        System.out.println("Brute Force:"+s.thirdMaxbruteForce(nums));
+        System.out.println("Brute Force:"+s.thirdMaxBruteForce(nums));
+        System.out.println("Optimal:"+s.thirdMaxOptimal(nums));
     }
 }
