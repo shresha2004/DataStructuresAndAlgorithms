@@ -86,7 +86,8 @@ public class Problem25 {
         Solution s = new Solution();
         int[] stalls = {0,3,4,10,9,7};
         int cows = 4;
-        System.out.println(s.aggressiveCowsBruteForce(stalls, cows));
+        System.out.println("Brute Force:"+s.aggressiveCowsBruteForce(stalls, cows));
+        System.out.println("Optimal:"+s.aggressiveCowsOptimal(stalls, cows));
 
     }
 }
