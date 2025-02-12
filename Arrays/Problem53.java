@@ -15,6 +15,16 @@ class Solution {
         }
         return ans;
     }
+    public List<Integer> findDuplicatesOptimal(int[] nums) {
+        int n =  nums.length;
+        List<Integer> ans = new ArrayList<>();
+        for(int i=0;i<n;i++){
+            int index = Math.abs(nums[i])-1;
+            if(nums[index]>0) nums[index] = - nums[index];
+            else ans.add(Math.abs(nums[i]));
+        }
+        return ans;
+    }
 }
 
 public class Problem53 {
@@ -22,5 +32,6 @@ public class Problem53 {
         Solution s = new Solution();
         int[] nums = {4,3,2,7,8,2,3,1};
         System.out.println("My Brute Force:"+(s.findDuplicatesBruteForce(nums)));
+        System.out.println("Optimal:"+(s.findDuplicatesOptimal(nums)));
     }
 }
