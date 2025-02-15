@@ -15,6 +15,24 @@ class Solution {
         }
         return max;
     }
+    public int splitArrayOptimal(int[] nums, int k) {
+        int n = nums.length;
+        int low= Integer.MIN_VALUE;
+        int high = 0;
+        for(int i =0;i<n;i++){
+            low = Math.max(low,nums[i]);
+            high += nums[i];
+        }
+        while(low <= high){
+           int mid = (low+high)/2;
+           int check = countSum(nums,mid);
+           if(check > k) low = mid+1;
+           else high = mid-1;
+        }
+        
+        return low;
+    }
+
     private int countSum(int[] nums,int maxSum){
         int n = nums.length;
         int partition = 1;
@@ -30,6 +48,8 @@ class Solution {
         }
         return partition;
     }
+
+
 }
 public class Problem27 {
     public static void main(String[] args) {
@@ -37,5 +57,6 @@ public class Problem27 {
         int[] nums = {7,2,5,10,8};
         int k = 2;
         System.out.println("Brute Force:"+s.splitArrayBruteForce(nums, k));
+        System.out.println("Optimal:"+s.splitArrayOptimal(nums, k));
     }
 }
