@@ -1,6 +1,7 @@
 import java.util.HashSet;
 
 class Solution {
+
     public boolean isHappyBruteForce(int n) {
        HashSet<Integer> set = new HashSet<>();
        while(n != 1){
@@ -10,6 +11,17 @@ class Solution {
        }
      return true;
     }
+
+    
+    public boolean isHappyOptimal(int n) {
+        int slow = n, fast =n;
+        do{
+          slow=getNumber(slow);
+          fast=getNumber(getNumber(fast));
+        }while(slow != fast);
+  
+        return slow==1;
+      }
     private int getNumber(int n){
         int sum = 0;
         while(n>0){
@@ -26,5 +38,6 @@ public class Problem51 {
         Solution s = new Solution();
         int num =9;
         System.out.println("Brute Force:"+s.isHappyBruteForce(num));
+        System.out.println("Optimal:"+s.isHappyOptimal(num));
     }
 }
