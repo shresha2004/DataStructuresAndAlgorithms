@@ -20,6 +20,25 @@ class Solution {
     }
     return n<=0;
 }
+    public boolean canPlaceFlowersOptimal(int[] flowerbed, int n) {
+        int len = flowerbed.length;
+        int count = 0;
+        for(int i=0;i<len;i++){
+            if(flowerbed[i]==0){
+            boolean left = (i==0 || flowerbed[i-1] == 0);
+            boolean right = (i==len-1 || flowerbed[i+1]==0);
+            if(left && right){
+                count++;
+                i++;
+             
+                if(count>=0) return true;
+            }
+        }
+        
+        
+    }
+    return count>=0;
+}
 }
 public class Problem57 {
       public static void main(String[] args) {
@@ -27,5 +46,6 @@ public class Problem57 {
         int[] flowerbed = {1,0,0,0,1};
          int n = 1;
         System.out.println("Brute Force:"+s.canPlaceFlowersBruteForce(flowerbed, n));
+        System.out.println("Optimal:"+s.canPlaceFlowersOptimal(flowerbed, n));
     }
 }
