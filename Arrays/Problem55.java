@@ -13,7 +13,7 @@ class Solution {
        return false;
         
     }
-    public boolean isValid(String s) {
+    public boolean isValidOptimal(String s) {
         Stack<Character> stack = new Stack<>();
         for(char ch : s.toCharArray()){
             if(ch == '(' || ch=='{'||ch=='[') stack.push(ch);
@@ -34,6 +34,6 @@ public class Problem55 {
     public static void main(String[] args) {
         Solution s = new Solution();
         System.out.println("Brute Force:"+s.isValidBruteForce("(){}[]"));
-        System.out.println("Optimal:"+s.isValidBruteForce("(){}[]"));
+        System.out.println("Optimal:"+s.isValidOptimal("(){}[]"));
     }
 }
