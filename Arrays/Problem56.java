@@ -40,6 +40,6 @@ public class Problem56 {
         Solution s = new Solution();
         int[] nums = {3,1,2,4};
         System.out.println("My Brute Force:"+Arrays.toString(s.sortArrayByParityBruteForce(nums)));
-        System.out.println("My Brute Force:"+Arrays.toString(s.sortArrayByParityOptimal(nums)));
+        System.out.println("My Optimal:"+Arrays.toString(s.sortArrayByParityOptimal(nums)));
     }
 }
