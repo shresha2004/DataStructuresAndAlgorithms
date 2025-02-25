@@ -19,6 +19,22 @@ class Solution {
        
         return ans;
     }
+    public int[] findErrorNumsOptimal(int[] nums) {
+        int n = nums.length;
+        int[] ans = new int[2];
+       for(int i =0;i<n;i++){
+       int index = Math.abs(nums[i])-1;
+       if(nums[index]>0) nums[index] = - nums[index];
+       else{
+            ans[0]= Math.abs(nums[index]);
+       }
+       }
+       for(int i =0; i<n;i++){
+        if(nums[i]>0) ans[1] = i+1;
+       }
+       
+        return ans;
+    }
 }
 
 
@@ -27,5 +43,6 @@ public class Problem52 {
         Solution s = new Solution();
         int[] nums = {1,2,2,4};
         System.out.println("Brute Force:"+Arrays.toString(s.findErrorNumsBruteForce(nums)));
+        System.out.println("Optimal:"+Arrays.toString(s.findErrorNumsOptimal(nums)));
     }
 }
