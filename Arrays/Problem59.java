@@ -17,12 +17,33 @@ class Solution {
         return minLen;
         
     }
+
+    public int minSubArrayLenOptimal(int target, int[] nums) {
+        int n = nums.length;
+        int minLen = Integer.MAX_VALUE;
+        int low = 0;
+        int high = 0;
+       int sum = 0;
+       while(high < n){
+         sum += nums[high++];
+        while(sum>=target){
+            minLen = Math.min(minLen,high-low);
+            sum-=nums[low++];
+        }
+        
+       }
+      
+       
+       return minLen==Integer.MAX_VALUE ? 0 : minLen ;
+        
+    }
 }
 public class Problem59 {
     public static void main(String[] args) {
         Solution s = new Solution();
         int target = 7;
         int[] nums = {2,3,1,2,4,3};
-        System.out.println("Brute Force"+s.minSubArrayLenBruteForce(target, nums));
+        System.out.println("Brute Force:"+s.minSubArrayLenBruteForce(target, nums));
+        System.out.println("Optimal:"+s.minSubArrayLenOptimal(target, nums));
     }
 }
