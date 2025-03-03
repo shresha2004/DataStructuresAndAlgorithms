@@ -25,5 +25,6 @@ public class Problem60 {
         Solution s = new Solution();
         int[] nums = {4,2,5,7};
         System.out.println("Brute Force:"+Arrays.toString(s.sortArrayByParityIIBruteForce( nums)));
+        System.out.println("Optimal:"+Arrays.toString(s.sortArrayByParityIIBruteForce( nums)));
     }
 }
