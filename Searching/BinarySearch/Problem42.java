@@ -2,7 +2,7 @@
 package BinarySearch;
 import java.util.ArrayList;
 class Solution {
-    int median(int mat[][]) {
+    int medianBruteForce(int mat[][]) {
         // code here
         int m = mat.length;
         int n = mat[0].length;
@@ -52,11 +52,62 @@ class Solution {
             i++;
         }
     }
+
+    int medianOptimal(int mat[][]) {
+        // code here
+        int m = mat.length;
+        int n = mat[0].length;
+        int low = Integer.MAX_VALUE;
+        int high = Integer.MIN_VALUE;
+        for(int i=0;i<m;i++){
+            low = Math.min(low,mat[i][0]);
+            high = Math.max(high,mat[i][n-1]);
+        }
+        
+        int req = (m*n)/2;
+        while(low <= high){
+            int mid = (low+high)>>1;
+            int smaller =blackBox(mat,mid,m);
+            if(smaller <= req){
+                low = mid+1;
+            }
+            else {
+                high = mid-1;
+            }
+        }
+        return low;
+    }
+    
+    private int blackBox(int[][] mat,int x,int m){
+        int count=0;
+        for(int i=0;i<m;i++){
+            count+=smallInRow(mat[i],x);
+        }
+        return count;
+    }
+    
+    private int smallInRow(int[] row,int x){
+        int low =0;
+        int high = row.length-1;
+        int ans =row.length;
+        while(low <= high){
+            int mid = (low+high)/2;
+            if(row[mid]>x){
+                ans =mid;
+                high =mid-1;
+            }
+            else{
+                low = mid+1;
+            }
+        }
+        return ans;
+    }
 }
 public class Problem42 {
     public static void main(String[] args) {
         Solution s = new Solution();
         int[][] mat = {{1, 3, 5}, {2, 6, 9}, {3, 6, 9}};
-        System.out.println("Brute Force:"+s.median(mat));
+        System.out.println("Brute Force:"+s.medianBruteForce(mat));
+        System.out.println("Optimal:"+s.medianOptimal(mat));
     }
 }
