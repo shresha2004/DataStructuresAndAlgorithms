@@ -10,11 +10,16 @@ class Solution {
         }
        return false; 
     }
+
+    public boolean rotateStringOptimal(String s, String goal) {
+        return ((s.length() == goal.length()) && ((s+s).contains(goal)));
+       }
 }
 public class Problem6 {
     public static void main(String[] args) {
         Solution s = new Solution();
         String ss = "abcde", goal = "cdeab";
         System.out.println("Brute Force:"+s.rotateStringBruteForce(ss, goal));
+        System.out.println("Optimal:"+s.rotateStringOptimal(ss, goal));
     }
 }
