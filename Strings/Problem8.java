@@ -39,6 +39,7 @@ class Solution {
             sb.append(String.valueOf(ch).repeat(i));
         }
         }
+        
     }
 
     return sb.toString();
