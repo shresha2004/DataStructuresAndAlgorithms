@@ -130,6 +130,54 @@ public class DLLinJava {
         return head;
 
     }
+   
+    public static Node insertBeforeTail(Node head,int data){
+        if(head == null) return new Node(data);
+        if(head.next == null) return insertBeforeHead(head, data);
+        Node mover = head;
+        while(mover.next != null){
+            mover= mover.next;
+
+        }
+        Node previous = mover.prev;
+        Node newNode = new Node(data);
+        newNode.prev =previous;
+        newNode.next = mover;
+        previous.next = newNode;
+        mover.prev = newNode;
+        return head;
+    }
+   
+    public static Node insertBeforeKthEle(Node head,int k,int data){
+        if(k==1) return insertBeforeHead(head, data);
+        Node mover = head;
+        int count = 1;
+        while(count < k ){
+            mover = mover.next;
+            count++;
+        }
+        Node previous = mover.prev;
+        Node newNode = new Node(data);
+        newNode.prev = previous;
+        newNode.next = mover;
+        previous.next = newNode;
+        mover.prev = newNode;
+        return head;
+
+    }
+   
+    public static Node insertBeforeGivenNode(Node head,Node givenNode, int data){
+        
+        if(head == givenNode) return insertBeforeHead(head, data);
+        Node previous = givenNode.prev;
+        Node next = givenNode;
+        Node newNode = new Node(data);
+        newNode.prev = previous;
+        newNode.next = next;
+        previous.next = newNode;
+        next.prev = newNode;
+        return head;
+    }
     public static void main(String[] args) {
         int[] arr = {1,2,3,4,5,6,7,8,9};
         Node head = doublyLinkedList(arr);
@@ -141,6 +189,9 @@ public class DLLinJava {
         head = deleteKthNode(head, 1);
         head =deleteGivenNode(head,head.next.next);
         head = insertBeforeHead(head, 0);
+        head = insertBeforeTail(head, 0);
+        head = insertBeforeKthEle(head,4,0);
+        head = insertBeforeGivenNode(head,head.next.next, 0);
         head = printForward(head);
 
 
