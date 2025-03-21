@@ -27,6 +27,17 @@ class Solution {
         }
         return temp;
     }
+    public ListNode middleNodeOptimal(ListNode head) {
+        if(head == null) return head;
+      ListNode slow = head;
+      ListNode fast = head;
+      while(fast.next != null && fast.next.next != null){
+        fast= fast.next.next;
+        slow = slow.next;
+      }
+      if(fast.next == null) return slow;
+      return slow.next;
+    }
 }
 
 public class Problem11 {
@@ -47,5 +58,6 @@ public class Problem11 {
      ListNode head= addingArrToLL(arr);
      
       System.out.println("My Brute Force:"+s.middleNodeBruteForce(head).val);
+      System.out.println("Optimal:"+s.middleNodeOptimal(head).val);
   }
 }
