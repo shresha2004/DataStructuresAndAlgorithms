@@ -1,6 +1,6 @@
 //Problem:https://www.geeksforgeeks.org/problems/reverse-a-doubly-linked-list/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=reverse-a-doubly-linked-list
 
-
+import java.util.Stack;
 class Node
 {
     int data;
@@ -14,7 +14,7 @@ class Node
 }
 
 class Solution {
-    public Node reverseDLLBruteForce(Node head) {
+    public Node reverseDLLMyBruteForce(Node head) {
         // Your code here
         Node tail = head ;
         Node start = head;
@@ -36,6 +36,51 @@ class Solution {
         }
         return head;
     }
+
+    public Node reverseDLLBruteForce(Node head) {
+        // Your code here
+        Stack<Integer> stk = new Stack<>();
+        Node temp = head;
+        while(temp!= null){
+            stk.push(temp.data);
+            temp = temp.next;
+        }
+        
+        Node add = head;
+        while(add != null){
+            add.data = stk.pop();
+            add = add.next;
+        }
+        return head;
+    }
+    public Node reverseDLLMyOptimal(Node head) {
+        // Your code here
+     Node mover = head;
+     Node updatedHead = null;
+     while(mover != null){
+         Node temp = mover.next;
+         mover.next = mover.prev;
+         mover.prev = temp;
+         updatedHead = mover;
+         mover = temp;
+     }
+     return updatedHead;
+    }
+    public Node reverseDLLOptimal(Node head) {
+        if(head == null || head.next == null) return head;
+        // Your code here
+     Node mover = head;
+     Node temp = null;
+     while(mover != null){
+         temp = mover.prev;
+         mover.prev = mover.next;
+         mover.next = temp;
+        
+         mover = mover.prev;
+     }
+     return temp.prev;
+    }
+    
    
 }
 public class Problem10 {
@@ -53,8 +98,14 @@ public class Problem10 {
     public static void main(String[] args) {
         Solution s = new Solution();
         int[] arr = {3,4,5};
-        Node head = doublyLinkedList(arr);
-        System.out.println("My Brute Force:"+s.reverseDLLBruteForce(head).data);
+        Node head1 = doublyLinkedList(arr);
+        Node head2 = doublyLinkedList(arr);
+        Node head3 = doublyLinkedList(arr);
+        Node head4 = doublyLinkedList(arr);
+        System.out.println("My Brute Force:"+s.reverseDLLMyBruteForce(head1).data);
+        System.out.println("Brute Force:"+s.reverseDLLMyBruteForce(head2).data);
+        System.out.println("My Optimal:"+s.reverseDLLMyOptimal(head3).data);
+        System.out.println("Optimal:"+s.reverseDLLMyBruteForce(head4).data);
         
     }
 }
