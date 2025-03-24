@@ -28,7 +28,7 @@ public class Problem {
     }
     public static void main(String[] args){
         Solution s = new Solution();
-        int[] arr = 
+        int[] arr = { };
         Node head = addingArrToLL(arr);
         System.out.println();
 
