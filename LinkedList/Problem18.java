@@ -66,6 +66,47 @@ class Solution {
        }
        return head;
     }
+    //Optimal using Merge Sort
+    public ListNode sortListOptimal(ListNode head) {
+        if(head == null || head.next == null) return head;
+        ListNode middle = findmiddle(head);
+        ListNode right = middle.next;
+        middle.next = null;
+        ListNode left = head;
+        left = sortListOptimal(left);
+        right = sortListOptimal(right);
+        return merge(left,right);
+    }
+    private ListNode merge(ListNode list1, ListNode list2){
+            ListNode dummyNode = new ListNode(-1);
+            ListNode temp=dummyNode;
+            while(list1 != null && list2 != null){
+                if(list1.val >= list2.val){
+                    temp.next = list2;
+                    list2 = list2.next;
+                }else{
+                    temp.next = list1;
+                    list1 = list1.next;
+                }
+                temp = temp.next;
+            }
+            if(list1 != null){
+                temp.next = list1;
+            }
+            else {
+                temp.next = list2;
+            }
+            return dummyNode.next;
+    }
+    private ListNode findmiddle(ListNode head){
+        ListNode slow = head;
+        ListNode fast = head.next;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
 }
 public class Problem18 {
    public static ListNode addingArrToLL(int arr[]){
@@ -86,5 +127,6 @@ public class Problem18 {
      
       System.out.println("Brute Force:"+s.sortListBruteForce(head).val);
       System.out.println("Better:"+s.sortListBetter(head).val);
+      System.out.println("Optimal:"+s.sortListBetter(head).val);
   }
 }
