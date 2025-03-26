@@ -18,7 +18,6 @@ class Solution {
             mover = mover.next;
         }
         quickSort(arr,0,arr.size()-1);
-        System.out.println(arr);
         mover = head;
         for(int ele : arr){
             mover.val = ele;
@@ -52,6 +51,21 @@ class Solution {
         arr.set(j,temp);
         return j;
     }
+
+    public ListNode sortListBetter(ListNode head) {
+        if(head == null || head.next == null) return head;
+       ListNode mover1 = head;
+       for(;mover1 != null;mover1=mover1.next){
+        for(ListNode mover2 = mover1.next;mover2 != null;mover2=mover2.next ){
+            if(mover2.val < mover1.val){
+                int temp = mover2.val;
+                mover2.val = mover1.val;
+                mover1.val = temp;
+            }
+        }
+       }
+       return head;
+    }
 }
 public class Problem18 {
    public static ListNode addingArrToLL(int arr[]){
@@ -71,5 +85,6 @@ public class Problem18 {
      ListNode head= addingArrToLL(arr);
      
       System.out.println("Brute Force:"+s.sortListBruteForce(head).val);
+      System.out.println("Better:"+s.sortListBetter(head).val);
   }
 }
