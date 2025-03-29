@@ -30,7 +30,7 @@ public class Problem {
         Solution s = new Solution();
         int[] arr = { };
         Node head = addingArrToLL(arr);
-        System.out.println();
-
+        System.out.println("Brute Force:"+s.);
+       // System.out.println("Optimal:"+s.);
     }
 }
