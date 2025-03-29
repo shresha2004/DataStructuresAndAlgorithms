@@ -23,7 +23,7 @@ class Solution {
         }
        return null;
        }
-       public ListNode getIntersectionNodeBetter(ListNode headA, ListNode headB) {
+       public ListNode getIntersectionNodeBetter1(ListNode headA, ListNode headB) {
         HashSet<ListNode> set = new HashSet<>();
        ListNode  mover = headA;
         while(mover !=null){
@@ -37,6 +37,58 @@ class Solution {
         }
         return null;
         }
+        public ListNode getIntersectionNodeBetter2(ListNode headA, ListNode headB) {
+
+            int lengthA = findLength(headA);
+            int lengthB = findLength(headB);
+    
+            if (lengthA > lengthB) {
+                int diff = lengthA - lengthB;
+                ListNode newHeadA = moveNode(headA, diff);
+                return verify(newHeadA,headB);
+             
+            } else {
+                int diff = lengthB - lengthA;
+                ListNode newHeadB = moveNode(headB,diff);
+                return verify(headA,newHeadB);
+            }
+         
+        }
+        private ListNode verify(ListNode moverA,ListNode moverB){
+            while(moverA != null && moverB != null){
+                if(moverA == moverB) return moverA;
+                moverA = moverA.next;
+                moverB = moverB.next;
+            }
+            return null;
+        }
+    
+        private ListNode moveNode(ListNode mover, int count){
+            while(count > 0){
+                mover = mover.next;
+                count--;
+            }
+            return mover;
+        }
+        private int findLength(ListNode mover) {
+            int count = 0;
+            while (mover != null) {
+                count++;
+                mover = mover.next;
+            }
+            return count;
+        }
+        public ListNode getIntersectionNodeOptimal(ListNode headA, ListNode headB) {
+            if(headA == null || headB == null) return null;
+            ListNode moverA = headA;
+            ListNode moverB = headB;
+    
+            while(moverA != moverB){
+                moverA = moverA==null?headA:moverA.next;
+                moverB = moverB==null?headB:moverB.next;
+            }
+            return moverA;
+        }   
 }
 public class Problem20 {
    public static ListNode addingArrToLL(int arr[]){
@@ -56,6 +108,8 @@ public class Problem20 {
      ListNode head= addingArrToLL(arr);
      
       System.out.println("Brute Force:"+s.getIntersectionNodeBruteForce(head, head.next.next).val);
-      System.out.println("Better:"+s.getIntersectionNodeBetter(head, head.next.next).val);
+      System.out.println("Better1:"+s.getIntersectionNodeBetter1(head, head.next.next).val);
+      System.out.println("Better2:"+s.getIntersectionNodeBetter2(head, head.next.next).val);
+      System.out.println("Optimal:"+s.getIntersectionNodeOptimal(head, head.next.next).val);
   }
 }
