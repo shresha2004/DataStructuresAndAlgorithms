@@ -97,6 +97,37 @@ class Solution {
         return head;
         
     }
+
+    static Node segregateOptimal(Node head) {
+        // add your code here
+        if(head == null || head.next == null) return head;
+        Node link0 = new Node(-1);
+        Node head0 = link0;
+        Node link1 = new Node(-1);
+        Node head1 = link1;
+        Node link2 =new Node(-1);
+        Node head2 = link2;
+        Node temp = head;
+        
+        while(temp != null){
+            if(temp.data == 0){
+                link0.next = temp;
+                link0 = link0.next;
+            }else if( temp.data == 1){
+                link1.next = temp;
+                link1 = link1.next;
+            }else{
+                link2.next = temp;
+                link2 = link2.next;
+            }
+            temp = temp.next;
+        }
+        link0.next = head1.next != null? head1.next : head2.next;
+        link1.next = head2.next;
+        link2.next = null;
+        return head0.next;
+        
+    }
    
 }
 
@@ -119,7 +150,7 @@ public class Problem19 {
         Node head3 = addingArrToLL(arr);
         System.out.println("Brute Force:"+s.segregateBruteForce(head1).data);
         System.out.println("Better:"+s.segregateBruteForce(head2).data);
-       // System.out.println("Optimal:"+s.segregateBruteForce(head3).data);
+       System.out.println("Optimal:"+s.segregateOptimal(head3).data);
 
     }
 }
