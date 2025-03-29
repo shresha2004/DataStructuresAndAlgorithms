@@ -150,7 +150,8 @@ public class Problem19 {
         Node head3 = addingArrToLL(arr);
         System.out.println("Brute Force:"+s.segregateBruteForce(head1).data);
         System.out.println("Better:"+s.segregateBruteForce(head2).data);
-       System.out.println("Optimal:"+s.segregateOptimal(head3).data);
+       System.out.println("Optimal:"+s.segregateOptimal(head3).data); 
+       
 
     }
 }
