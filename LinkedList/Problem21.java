@@ -50,6 +50,29 @@ class Solution {
         return prev;
     }
 
+    public Node addOneOptimal(Node head) {
+        // code here.
+     int carry = helper(head);
+     if(carry == 1){
+         Node newNode = new Node(1);
+         newNode.next = head;
+         return newNode;
+     }
+     return head;
+    }
+    private int helper(Node mover){
+        if(mover== null){
+            return 1;
+        }
+        int carry = helper(mover.next);
+        mover.data = mover.data + carry;
+        if(mover.data < 10){
+            return 0;
+        }
+        mover.data = 0;
+        return 1;
+    }
+
 }
 
 public class Problem21 {
@@ -67,8 +90,9 @@ public class Problem21 {
     public static void main(String[] args){
         Solution s = new Solution();
         int[] arr = {9,9,9};
-        Node head = addingArrToLL(arr);
-        System.out.println("Brute Force:"+s.addOneBruteForce(head).data);
-       // System.out.println("Optimal:"+s.);
+        Node head1 = addingArrToLL(arr);
+        Node head2 = addingArrToLL(arr);
+        System.out.println("Brute Force:"+s.addOneBruteForce(head1).data);
+       System.out.println("Optimal:"+s.addOneOptimal(head2).data);
     }
 }
