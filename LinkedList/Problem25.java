@@ -43,6 +43,23 @@ class Solution {
         }
         return head;
     }
+
+    Node removeDuplicatesOptimal(Node head) {
+        if (head == null || head.next == null) return head;
+        
+        Node mover1 = head;
+        Node mover2 = head.next;
+        while(mover2 != null){
+            if(mover1.data != mover2.data){
+                mover1.next = mover2;
+                mover2.prev = mover1;
+                mover1 = mover1.next;
+            }
+            mover2 = mover2.next;
+        }
+        mover1.next = null;
+        return head;
+    }
    
 }
 public class Problem25 {
@@ -57,11 +74,12 @@ public class Problem25 {
         }
         return head;
     }
+    
     public static void main(String[] args) {
         Solution s = new Solution();
         int[] arr = {1,1,1,2,3,4};
         Node head = doublyLinkedList(arr);
         System.out.println("Brute Force:"+s.removeDuplicatesBruteForce(head).next.data);
-       // System.out.println("Optimal:"+s.);        
+        System.out.println("Optimal:"+s.removeDuplicatesOptimal(head).next.data);        
     }
 }
