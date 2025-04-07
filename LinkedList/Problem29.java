@@ -62,7 +62,6 @@ public class Problem29 {
         int[] arr = {1,2,3,4,5};
         ListNode head = addingArrToLL(arr);
 
-        System.out.println("Brute Force:" + s.rotateRight(head, 2).val);
-        // System.out.println("Optimal:"+s.);
+        System.out.println("Answer:" + s.rotateRight(head, 2).val);
     }
 }
