@@ -12,7 +12,7 @@ class Node
 
 
 class Solution {
-    Node flatten(Node root) {
+    Node flattenBruteForce(Node root) {
         // code here
         
         Node mover = root;
@@ -66,6 +66,42 @@ class Solution {
         arr.set(j,temp);
         return j;
     }
+
+    Node flattenOptimal(Node root) {
+        // code here
+       if(root == null || root.next == null) return root;
+       Node List1 = flattenOptimal(root.next);
+       return mergeList(List1,root);
+    }
+    private Node mergeList(Node List1, Node List2){
+        Node head = new Node(-1);
+        Node res = head;
+        while(List1 != null && List2 != null){
+            if(List1.data < List2.data){
+               res.bottom = List1;
+               res = res.bottom;
+               List1= List1.bottom;
+            }
+            else{
+                res.bottom = List2;
+                res =  res.bottom;
+                List2 = List2.bottom;
+                
+            }
+            res.next = null;
+        }
+        while(List1 != null){
+            res.bottom = List1;
+            res = res.bottom;
+            List1 = List1.bottom;
+        }
+        while(List2 != null){
+            res.bottom = List2;
+            res = res.bottom;
+            List2 = List2.bottom;
+        }
+        return head.bottom;
+    }
    
 }
 
@@ -83,8 +119,8 @@ public class Problem32 {
     public static void main(String[] args){
         Solution s = new Solution();
         int[] arr = { };
-        Node head = addingArrToLL(arr);
-        System.out.println("Brute Force:(Code is different paste solution class in problem link)");
+        //Node head = addingArrToLL(arr);
+        System.out.println("Brute Force  and Optimal:(Code is different paste solution class in problem link)");
        // System.out.println("Optimal:"+s.);
     }
 }
