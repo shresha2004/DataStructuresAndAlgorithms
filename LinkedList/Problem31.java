@@ -26,6 +26,24 @@ class Solution {
         }
         return head;
     }
+
+    public ListNode swapPairsOptimal(ListNode head) {
+        ListNode dummyNode = new ListNode(-1);
+        ListNode prev = dummyNode;
+        prev.next = head;
+ 
+        while(prev.next != null && prev.next.next != null){
+         ListNode first = prev.next;
+         ListNode second = prev.next.next;
+         
+         first.next = second.next;
+         second.next = first;
+         prev.next = second;
+ 
+         prev = first;
+        }
+        return dummyNode.next;
+     }
 }
 
 public class Problem31 {
@@ -43,9 +61,10 @@ public class Problem31 {
   public static void main(String[] args) {
       Solution s = new Solution();
       int[] arr = {1,2,3,4};
-     ListNode head= addingArrToLL(arr);
+     ListNode head1= addingArrToLL(arr);
+     ListNode head2= addingArrToLL(arr);
      
-      System.out.println("Brute Force:"+s.swapPairsBruteForce(head));
-     // System.out.println("Optimal:"+s.);
+      System.out.println("Brute Force:"+s.swapPairsBruteForce(head1).val);
+     System.out.println("Optimal:"+s.swapPairsOptimal(head2).val);
   }
 }
