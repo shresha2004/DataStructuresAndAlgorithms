@@ -66,6 +66,6 @@ public class Problem66 {
         Solution s = new Solution();
         int[] arr = {-1,2,1,-4};
         System.out.println("Brute Force:"+s.threeSumClosestBruteForce(arr, 1));
-       System.out.println("Optimal:"+s.threeSumClosestOptimal(arr, 1));
+       System.out.println("Optimal:"+s.threeSumClosestOptimal(arr, 1));     
     }
 }
