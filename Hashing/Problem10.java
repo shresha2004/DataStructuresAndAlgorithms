@@ -20,7 +20,6 @@ public class Problem10 {
         int[] nums2 = { -2, -1 };
         int[] nums3 = { -1, 2 };
         int[] nums4 = { 0, 2 };
-
         System.out.println("Brute Force:"+s.fourSumCount(nums1, nums2, nums3, nums4));
     }
 }
