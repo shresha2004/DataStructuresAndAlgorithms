@@ -32,6 +32,7 @@ public class Problem43 {
     public static void main(String[] args) {
         Solution s = new Solution();
         char[] letters = {'c','f','j'};
+        
         System.out.println("Brute Force:"+s.nextGreatestLetterBruteForce(letters, 'a'));
         System.out.println("Optimal:"+s.nextGreatestLetterOptimal(letters, 'a'));
     }
