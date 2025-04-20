@@ -21,6 +21,8 @@ class Solution {
         int mid = (low+high)/2;
         if(letters[mid]<=target){
             low = mid+1;
+
+            
         }else
         high = mid-1;
 
