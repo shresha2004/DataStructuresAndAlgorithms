@@ -30,6 +30,5 @@ public class Problem11 {
         Solution s = new Solution();
         int[] nums ={1,15,6,3} ;
         System.out.println("Brute Force:"+s.differenceOfSum(nums));
-       // System.out.println("Optimal:"+s.);
     }
 }
