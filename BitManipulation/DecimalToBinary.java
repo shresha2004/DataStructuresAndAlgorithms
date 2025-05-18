@@ -22,10 +22,25 @@ class Solution{
         }
         return new String(arr);
     }
+    public int BinaryToDecimal(String x){
+        int len = x.length()-1;
+        int p2=1;
+        int num =0;
+        while(len>=0){
+            if(x.charAt(len)=='1'){
+                num = num + p2;
+            }
+            p2=p2*2;
+            len--;
+        }
+        return num;
+    }
 }
 public class DecimalToBinary {
     public static void main(String[] args){
         Solution s = new Solution();
-        System.out.println("Decimal to Binary:"+s.decimal2Binary(13));
+        String res = s.decimal2Binary(13);
+        System.out.println("Decimal to Binary:"+res);
+        System.out.println("Binary to Decimal:"+s.BinaryToDecimal(res));
     }
 }
