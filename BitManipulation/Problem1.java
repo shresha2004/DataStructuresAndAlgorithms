@@ -19,9 +19,13 @@ class Solution {
         return lst.get(k) == 1;
     }
 
-    static boolean checkKthBitOptimal(int n, int k) {
+    static boolean checkKthBitOptimal1(int n, int k) {
         // Your code here
         return (n & (1 << k)) != 0;
+    }
+     static boolean checkKthBitOptimal2(int n, int k) {
+        // Your code here
+     return (1  & (n>>k)) != 0;
     }
 }
 
@@ -31,6 +35,7 @@ public class Problem1 {
         int num = 4;
         int k = 0;
         System.out.println("Brute Force:" + s.checkKthBitBruteForce(num, k));
-        System.out.println("Optimal:" + s.checkKthBitOptimal(num, k));
+        System.out.println("Optimal:" + s.checkKthBitOptimal1(num, k));
+        System.out.println("Optimal:" + s.checkKthBitOptimal2(num, k));
     }
 }
