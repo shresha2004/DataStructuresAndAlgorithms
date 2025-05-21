@@ -39,7 +39,7 @@ class Solution{
 public class DecimalToBinary {
     public static void main(String[] args){
         Solution s = new Solution();
-        String res = s.decimal2Binary(13);
+        String res = s.decimal2Binary(4);
         System.out.println("Decimal to Binary:"+res);
         System.out.println("Binary to Decimal:"+s.BinaryToDecimal(res));
     }

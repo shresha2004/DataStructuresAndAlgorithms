@@ -120,7 +120,7 @@ public class Problem32 {
         Solution s = new Solution();
         int[] arr = { };
         //Node head = addingArrToLL(arr);
-        System.out.println("Brute Force  and Optimal:(Code is different paste solution class in problem link)");
+        System.out.println("Brute Force  and Optimal:(Code is different. Paste solution class in problem link)");
        // System.out.println("Optimal:"+s.);
     }
 }
