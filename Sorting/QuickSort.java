@@ -31,8 +31,6 @@ class Solution{
 
    
 }
-
-
 public class QuickSort {
     public static void main(String[] args) {
         Solution s=new Solution();
