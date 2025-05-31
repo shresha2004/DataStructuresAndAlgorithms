@@ -7,6 +7,7 @@ public int countKeyChangesBruteForce(String s) {
             if(lowerCase.charAt(i) != lowerCase.charAt(i+1)) count++;
         }
         return count;
+        
     }
 }
 public class Problem24 {
