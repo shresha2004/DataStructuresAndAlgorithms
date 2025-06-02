@@ -2,7 +2,7 @@
 class Solution {
    
    
-      public boolean isPowerOfTwo(int n) {
+      public boolean isPowerOfTwoRecusrsive(int n) {
           
           boolean isPow=power(n); 
           return isPow;
@@ -24,11 +24,16 @@ class Solution {
          
          return power(x);
       }
+        public boolean isPowerOfTwoBitManipulation(int n) {
+        if(n<=0) return false;
+        return (n&n-1) == 0;
+    }
   
   }
 public class Problem13 {
     public static void main(String[] args) {
         Solution s=new Solution();
-        System.out.println(s.isPowerOfTwo(4));
+        System.out.println("Recursive:"+s.isPowerOfTwoRecusrsive(4));
+        System.out.println("BitManipulation::"+s.isPowerOfTwoBitManipulation(4));
     }
 }
