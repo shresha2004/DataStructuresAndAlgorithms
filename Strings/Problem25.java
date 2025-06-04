@@ -20,5 +20,7 @@ public class Problem25 {
         String ss= "UD" ;
         System.out.println("Brute Force:"+s.judgeCircle(ss));
       
+
+        
     }
 }
