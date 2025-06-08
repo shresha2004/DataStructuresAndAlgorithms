@@ -36,7 +36,7 @@ class Solution{
 public class Problem10 {
     public static void main(String[] args) {
         Solution s = new Solution();
-      int dividend = 10, divisor = 3;
+        int dividend = 10, divisor = 3;
         System.out.println("Brute Force:"+s.divideBrutForce(dividend, divisor));
         System.out.println("Optimal:"+s.divideOptimal(dividend, divisor));
     }
