@@ -49,6 +49,16 @@ public int minBitFlipsBruteForce(int start, int goal) {
         }
         return new String(charArr);
     }
+     public int minBitFlipsOptimal(int start, int goal) {
+       int ans = start ^ goal;
+       int count = 0;
+      
+       for(int i=0;i<31;i++){
+      
+        if((ans & (1<<i))!=0) count++;
+       }
+       return count;
+    }
 }
 public class Problem11 {
     public static void main(String[] args) {
@@ -56,6 +66,7 @@ public class Problem11 {
         int start = 5;
         int goal = 8;
         System.out.println("Brute Force:"+s.minBitFlipsBruteForce(start, goal));
+        System.out.println("Optimal:"+s.minBitFlipsOptimal(start, goal));
     }
 }
 
