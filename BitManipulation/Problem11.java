@@ -67,6 +67,7 @@ public class Problem11 {
         int goal = 8;
         System.out.println("Brute Force:"+s.minBitFlipsBruteForce(start, goal));
         System.out.println("Optimal:"+s.minBitFlipsOptimal(start, goal));
+        
     }
 }
 
