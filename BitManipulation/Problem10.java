@@ -20,6 +20,7 @@ class Solution{
             return 1;
         boolean isNegative = (dividend < 0) ^ (divisor < 0);
         long n = Math.abs((long)dividend);
+        
         long d = Math.abs((long)divisor);
         int ans = 0;
         while (n >= d) {
