@@ -4,7 +4,6 @@ class Solution {
         int ans = 0;
         for (int i = l; i <= r; i++) {
             ans ^= i;
-            System.out.println(ans + "\n");
         }
         return ans;
     }
