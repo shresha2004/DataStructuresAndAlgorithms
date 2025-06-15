@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Arrays;
+
 class Solution {
     public int[] twoOddNumBruteForce(int Arr[], int N) {
         // code here
