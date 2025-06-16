@@ -40,6 +40,7 @@ public class Problem13 {
         Solution s = new Solution();
         int N = 8;
         int[] Arr = { 4, 2, 4, 5, 2, 3, 3, 1 };
+        
         System.out.println("Brute Force:" +Arrays.toString(s.twoOddNumBruteForce(Arr, N)));
     }
 }
