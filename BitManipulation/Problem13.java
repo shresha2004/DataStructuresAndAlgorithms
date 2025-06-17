@@ -33,6 +33,24 @@ class Solution {
         return ans;
 
     }
+    public int[] twoOddNumOptimal(int Arr[], int N) {
+        // code here
+        int xor =0;
+        for(int i=0;i<N;i++){
+            xor ^= Arr[i];
+        }
+    
+        int bucket1 = 0;
+        int bucket2 = 0;
+        
+        int rightmost = (xor & xor-1) ^ xor;
+        for(int i=0;i<N;i++){
+            if((Arr[i] & rightmost) > 0) bucket1 ^= Arr[i];
+            else bucket2^=Arr[i];
+        }
+        if(bucket1 > bucket2) return new int[] {bucket1,bucket2};
+       return new int[] {bucket2,bucket1};
+    }
 }
 
 public class Problem13 {
@@ -40,7 +58,8 @@ public class Problem13 {
         Solution s = new Solution();
         int N = 8;
         int[] Arr = { 4, 2, 4, 5, 2, 3, 3, 1 };
-        
+
         System.out.println("Brute Force:" +Arrays.toString(s.twoOddNumBruteForce(Arr, N)));
+        System.out.println("Optimal:" +Arrays.toString(s.twoOddNumBruteForce(Arr, N)));
     }
 }
