@@ -19,7 +19,7 @@ public int[] AllPrimeFactorsBruteForce(int N) {
     }
 
 
-    public int[] AllPrimeBetter(int N) {
+    public int[] AllPrimeFactorsBetter(int N) {
         // code here
         ArrayList<Integer> arr = new ArrayList<>();
         for(int i=1;i<=sqrt(N);i++){
@@ -84,6 +84,8 @@ public class Problem15 {
         Solution s = new Solution();
         int num = 100;
         System.out.println("Brute Force:"+Arrays.toString(s.AllPrimeFactorsBruteForce(num)));
+        System.out.println("Better:"+Arrays.toString(s.AllPrimeFactorsBetter(num)));
+        System.out.println("Optimal:"+Arrays.toString(s.AllPrimeFactorsOptimal(num)));
     }
 }
 
