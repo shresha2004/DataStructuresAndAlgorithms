@@ -36,6 +36,23 @@ public int[] AllPrimeFactorsBruteForce(int N) {
         }
         return ans;
     }
+
+     public int[] AllPrimeFactorsOptimal(int N) {
+        // code here
+        ArrayList<Integer> arr = new ArrayList<>();
+        for(int i=2;i<=N;i++){
+            if(N%i==0){
+               arr.add(i);
+               while(N%i==0) N=N/i;
+            }
+        }
+        int[] ans = new int[arr.size()];
+        int i=0;
+        for(int ele : arr){
+            ans[i++]=ele;
+        }
+        return ans;
+    }
     
     private boolean prime(int ele){
        // System.out.println(ele);
