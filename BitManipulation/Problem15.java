@@ -40,12 +40,13 @@ public int[] AllPrimeFactorsBruteForce(int N) {
      public int[] AllPrimeFactorsOptimal(int N) {
         // code here
         ArrayList<Integer> arr = new ArrayList<>();
-        for(int i=2;i<=N;i++){
+        for(int i=2;i<=sqrt(N);i++){
             if(N%i==0){
                arr.add(i);
                while(N%i==0) N=N/i;
             }
         }
+        if(N != 1) arr.add(N);
         int[] ans = new int[arr.size()];
         int i=0;
         for(int ele : arr){
