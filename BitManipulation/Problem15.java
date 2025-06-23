@@ -87,6 +87,8 @@ public class Problem15 {
         System.out.println("Brute Force:"+Arrays.toString(s.AllPrimeFactorsBruteForce(num)));
         System.out.println("Better:"+Arrays.toString(s.AllPrimeFactorsBetter(num)));
         System.out.println("Optimal:"+Arrays.toString(s.AllPrimeFactorsOptimal(num)));
+
+        
     }
 }
 
