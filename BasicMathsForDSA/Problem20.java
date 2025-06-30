@@ -24,7 +24,5 @@ public class Problem20 {
         Solution s = new Solution();
         int num = 2000;
         System.out.println("Brute Force:"+s.findPrimeFactorsBruteForce(num));
-
-        
     }
 }
