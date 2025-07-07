@@ -28,8 +28,7 @@ class Solution{
 public class Problem19 {
     public static void main(String[] args) {
         Solution s = new Solution();
-        int num = 9;
-        
+        int num = 9; 
         System.out.println("Brute Force:"+s.isUglyBruteForce(num));
         System.out.println("Optimal:"+s.isUglyBruteForce(num));
     }
