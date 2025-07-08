@@ -30,6 +30,8 @@ public class Problem19 {
         Solution s = new Solution();
         int num = 9; 
         System.out.println("Brute Force:"+s.isUglyBruteForce(num));
+
+        
         System.out.println("Optimal:"+s.isUglyBruteForce(num));
     }
 }
