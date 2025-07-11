@@ -44,7 +44,7 @@ public class Problem20 {
         int num = 2000;
         System.out.println("Brute Force:"+s.findPrimeFactorsBruteForce(num));
         
-        
+
         System.out.println("Optimal:"+s.findPrimeFactorsBruteForce(num)); 
     }
 }
