@@ -21,7 +21,6 @@ class Solution{
 public class Problem21 {
     public static void main(String[] args) {
         Solution s = new Solution();
-      
     System.out.println("Optimal:"+s.myPow(2, 5));
     }
 }
