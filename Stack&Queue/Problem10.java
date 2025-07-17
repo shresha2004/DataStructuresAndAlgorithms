@@ -17,13 +17,8 @@ class Solution {
                 st.push(ele);
             }
         }
-        String ans = "";
-        while(!st.isEmpty()){
-            
-            ans += st.pop();
-            
-        }
-        return ans;
+       
+        return st.peek();
     }
 }
 
