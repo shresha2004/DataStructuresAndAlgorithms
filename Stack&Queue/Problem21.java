@@ -67,6 +67,5 @@ public class Problem21 {
         int[] heights ={2,1,5,6,2,3};
         System.out.println("Brute Force:"+s.largestRectangleAreaBruteForce(heights));
         System.out.println("Optimal:"+s.largestRectangleAreaOptimal(heights));
-
     }
 }
