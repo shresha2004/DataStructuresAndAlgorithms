@@ -42,7 +42,6 @@ class Solution {
 public class Problem22 {
     public static void main(String[] args) {
         Solution s = new Solution();
-       char[][] matrix = {{"1","0","1","0","0"},{"1","0","1","1","1"},{"1","1","1","1","1"},{"1","0","0","1","0"}}
-        System.out.println(s.);
-    }
-}
+       char[][] matrix = {{'1','0','1','0','0'},{'1','0','1','1','1'},{'1','1','1','1','1'},{'1','0','0','1','0'}}
+        System.out.print(s.maximalRectangle(matrix));
+    }}
