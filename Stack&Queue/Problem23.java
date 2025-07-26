@@ -19,6 +19,23 @@ class Solution {
         return ansArr;
         
     }
+     public int[] maxSlidingWindowOptimal(int[] nums, int k) {
+       Deque<Integer> dq = new ArrayDeque<>();
+        int n = nums.length;
+         int[] ans = new int[n-k+1];
+         int index =0;
+       for(int i=0;i<n;i++){
+        if(!dq.isEmpty() && dq.peekFirst()<=(i-k)) dq.removeFirst();
+        while(!dq.isEmpty() && nums[dq.peekLast()]<=nums[i]) dq.removeLast();
+        dq.addLast(i);
+        if(i>=k-1){ 
+            ans[index++]=nums[dq.peekFirst()];
+       }
+       
+        
+    }
+    return ans;
+}
 }
 public class Problem23 {
     public static void main(String[] args) {
@@ -26,5 +43,6 @@ public class Problem23 {
         int[] nums = {1,3,-1,-3,5,3,6,7}; 
         int k = 3;
         System.out.println("Brute Force:"+Arrays.toString(s.maxSlidingWindowBruteForce(nums, k)));
+        System.out.println("Optimal:"+Arrays.toString(s.maxSlidingWindowOptimal(nums, k)));
     }
 }
