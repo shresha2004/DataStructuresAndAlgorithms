@@ -31,8 +31,6 @@ class Solution {
         if(i>=k-1){ 
             ans[index++]=nums[dq.peekFirst()];
        }
-       
-        
     }
     return ans;
 }
