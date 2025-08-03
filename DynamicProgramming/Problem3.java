@@ -17,7 +17,7 @@ class Solution {
         return Math.min(left, right);
     }
 
-    int minCostMeoization(int[] height) {
+    int minCostMemoization(int[] height) {
         // code here
         int n = height.length;
         int[] memo = new int[n];
@@ -86,7 +86,7 @@ public class Problem3 {
         Solution s = new Solution();
         int[] height = { 20, 30, 40, 20 };
         System.out.println("Recursive:" + s.minCostRecursive(height));
-        System.out.println("Memoization:" + s.minCostMeoization(height));
+        System.out.println("Memoization:" + s.minCostMemoization(height));
         System.out.println("Tabulation:" + s.minCostTabu(height));
         System.out.println("Space Optimization:" + s.minCostSpaceOpti(height));
     }
