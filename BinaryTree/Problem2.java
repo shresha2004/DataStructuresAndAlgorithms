@@ -15,7 +15,25 @@ import java.util.*;
      }
        
 class Solution {
-    public List<Integer> inorderTraversal(TreeNode root) {
+    public List<Integer> inorderTraversalLoop(TreeNode root) {
+      Stack<TreeNode> st = new Stack<>();
+       List<Integer> ans = new ArrayList<>() ;
+        TreeNode node = root;
+        while(true){
+            if(node != null){
+                st.push(node);
+                node = node.left;
+            }
+            else{
+                if(st.isEmpty()) break;
+                node = st.pop();
+                ans.add(node.val);
+                node = node.right;
+            }
+        }
+        return ans;
+    }
+    public List<Integer> inorderTraversalRecursive(TreeNode root) {
         List<Integer> ans = new ArrayList<>();
         return traverse(root,ans);
     }
