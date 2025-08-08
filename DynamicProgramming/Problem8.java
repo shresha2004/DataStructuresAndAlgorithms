@@ -54,6 +54,29 @@ class Solution {
         }
         return maxPoints;
     }
+
+     public int maximumPointsTabulation(int arr[][]) {
+        // code here
+
+        int[][] tabu = new int[arr.length][4];
+        tabu[0][0] = Math.max(arr[0][1],arr[0][2]);
+        tabu[0][1] = Math.max(arr[0][0],arr[0][2]);
+        tabu[0][2] = Math.max(arr[0][0],arr[0][1]);
+        tabu[0][3] = Math.max(arr[0][0],Math.max(arr[0][1],arr[0][2]));
+        
+        for(int day=1;day<arr.length;day++){
+            for(int last=0;last<4;last++){
+                tabu[day][last] =0;
+                for(int task = 0;task<3;task++){
+                    if(task != last){
+                        int pts = arr[day][task]+tabu[day-1][task];
+                        tabu[day][last]=Math.max(tabu[day][last],pts);
+                    }
+                }
+            }
+        }
+        return tabu[arr.length-1][3];
+    }
 }
 
 public class Problem8 {
@@ -62,6 +85,7 @@ public class Problem8 {
         int[][] arr = {{1, 2, 5}, {3, 1, 1}, {3, 3, 3}};
         System.out.println("Recursive:"+s.maximumPointsRecursive(arr));
         System.out.println("Memoization:"+s.maximumPointsMemoization(arr));
-        
+        System.out.println("Tabulation:"+s.maximumPointsTabulation(arr));
+
     }
 }
