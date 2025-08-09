@@ -27,6 +27,24 @@ class Solution {
         int right = countPathsMemoization(row,column-1,memo);
         return memo[row][column]=left + right;
     }
+
+     public int uniquePathsTabulation(int m, int n) {
+        int[][] tabu = new int[m][n];
+        tabu[0][0]=1;
+        for(int row=0;row<m;row++){
+            for(int column=0;column<n;column++){
+                if( row == 0 && column == 0) tabu[0][0]=1;
+                else{
+                    int left =0;
+                    int right = 0;
+                    if(row>0)  left = tabu[row-1][column];
+                if(column > 0) right = tabu[row][column-1];
+                tabu[row][column]=left+right;
+                }
+            }
+        }
+        return tabu[m-1][n-1];
+    }
 }
 public class Problem9 {
     public static void main(String[] args) {
@@ -35,6 +53,7 @@ public class Problem9 {
         int n= 2;
         System.out.println("Recursive:"+s.uniquePathsRecursive(m, n));
         System.out.println("Memoization:"+s.uniquePathsMemoization(m, n));
+        System.out.println("Tabulation:"+s.uniquePathsTabulation(m, n));
     }
 
   
