@@ -15,7 +15,7 @@ import java.util.*;
       }
          
 class Solution {
-     public List<Integer> postorderTraversal(TreeNode root) {
+     public List<Integer> postorderTraversalLoop(TreeNode root) {
        Stack<TreeNode> st1 = new Stack<>();
        Stack<TreeNode> st2 = new Stack<>();
        List<Integer> ans = new ArrayList<>();
@@ -44,5 +44,34 @@ class Solution {
 }
 
 public class Problem3 {
-    
+     public static TreeNode createTree(int[] arr) {
+        if (arr.length == 0) return null;
+        TreeNode root = new TreeNode(arr[0]);
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
+
+        int i = 1;
+        while (!q.isEmpty() && i < arr.length) {
+            TreeNode current = q.poll();
+
+            if (i < arr.length) {
+                current.left = new TreeNode(arr[i++]);
+                q.offer(current.left);
+            }
+            if (i < arr.length) {
+                current.right = new TreeNode(arr[i++]);
+                q.offer(current.right);
+            }
+        }
+        return root;
+    }
+public static void main(String[] args) {
+     int[] arr = {1, 2, 3, 4, 5, 6, 7}; 
+        TreeNode root = createTree(arr); 
+
+        Solution sol = new Solution();
+        System.out.println("Using Iteration:"+sol.postorderTraversalLoop(root));
+        System.out.println("Using Recursion:"+sol.postorderTraversalRecusrsive(root));
+        
+}
 }
