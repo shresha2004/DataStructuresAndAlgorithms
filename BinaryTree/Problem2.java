@@ -75,5 +75,6 @@ public static void main(String[] args) {
         Solution sol = new Solution();
         System.out.println("Using Iteration:"+sol.inorderTraversalLoop(root));
         System.out.println("Using Recursion:"+sol.inorderTraversalRecursive(root));
+        
 }
 }
