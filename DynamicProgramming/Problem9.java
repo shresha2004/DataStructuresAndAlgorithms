@@ -45,6 +45,24 @@ class Solution {
         }
         return tabu[m-1][n-1];
     }
+
+    public int uniquePathsSpaceOptimization(int m, int n) {
+       int[] so = new int[n];
+
+        for(int row=0;row<m;row++){
+            int[] temp = new int[n];
+            for(int column=0;column<n;column++){
+                if( row == 0 && column == 0) temp[column]=1;
+                  else{  
+                  if(column>0)  temp[column]=temp[column-1];
+                    temp[column]+=so[column];
+                  }
+                }
+                so = temp;  
+            }
+        
+        return so[n-1];
+    }
 }
 public class Problem9 {
     public static void main(String[] args) {
@@ -54,6 +72,7 @@ public class Problem9 {
         System.out.println("Recursive:"+s.uniquePathsRecursive(m, n));
         System.out.println("Memoization:"+s.uniquePathsMemoization(m, n));
         System.out.println("Tabulation:"+s.uniquePathsTabulation(m, n));
+        System.out.println("Space Optimization:"+s.uniquePathsSpaceOptimization(m, n));
     }
 
   
