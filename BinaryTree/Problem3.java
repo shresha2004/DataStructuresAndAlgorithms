@@ -41,6 +41,40 @@ class Solution {
         ans.add(node.val);
         return ans;
     }
+
+    public List<Integer> postorderTraversalSingleStack(TreeNode root) {
+      TreeNode curr = root;
+      Stack<TreeNode> st = new Stack<>();
+
+     List<Integer> ans = new ArrayList<>();
+             if(root == null) return ans;
+
+      while(curr != null || !st.isEmpty()){
+        if(curr != null){
+            st.push(curr);
+            curr = curr.left;
+        }
+        else{
+            TreeNode temp = st.peek().right;
+            if(temp == null){
+                temp = st.peek();
+                st.pop();
+                ans.add(temp.val);
+                while(!st.isEmpty() && temp ==st.peek().right){
+                        
+                        temp = st.peek();
+                        st.pop();
+                        ans.add(temp.val);
+                }
+
+            }
+            else {
+                curr=temp;
+            }
+        }
+      }
+      return ans;
+    }
 }
 
 public class Problem3 {
@@ -72,6 +106,7 @@ public static void main(String[] args) {
         Solution sol = new Solution();
         System.out.println("Using Iteration:"+sol.postorderTraversalLoop(root));
         System.out.println("Using Recursion:"+sol.postorderTraversalRecusrsive(root));
+        System.out.println("Using Single Stack:"+sol.postorderTraversalSingleStack(root));
         
 }
 }
