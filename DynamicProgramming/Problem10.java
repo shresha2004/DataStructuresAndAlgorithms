@@ -32,6 +32,54 @@ class Solution {
         int right = countPathMemo(row,column-1,grid,memo);
         return memo[row][column]=left + right;
     }
+     public int uniquePathsWithObstaclesTabulation(int[][] obstacleGrid) {
+        int row = obstacleGrid.length - 1;
+        int column = obstacleGrid[0].length - 1;
+        int[][] memo = new int[obstacleGrid.length][obstacleGrid[0].length];
+        for (int i = 0; i <= row; i++) {
+            for (int j = 0; j <= column; j++) {
+                if (obstacleGrid[i][j] == 1) {
+                    memo[i][j] = 0;
+                    continue;
+                } else if (i == 0 && j == 0)
+                    memo[0][0] = 1;
+
+                else {
+                    int left = 0;
+                    int right = 0;
+                    if (i > 0)
+                        left = memo[i - 1][j];
+                    if (j > 0)
+                        right = memo[i][j - 1];
+                    memo[i][j] = left + right;
+                }
+            }
+        }
+        return memo[row][column];
+    }
+     public int uniquePathsWithObstaclesSpaceOptimization(int[][] obstacleGrid) {
+        int row = obstacleGrid.length;
+        int column = obstacleGrid[0].length;
+        int[] spo = new int[obstacleGrid[0].length];
+        for (int i = 0; i < row; i++) {
+            int[] temp = new int[obstacleGrid[0].length];
+            for (int j = 0; j < column; j++) {
+                if (obstacleGrid[i][j] == 1) {
+                    temp[j] = 0;
+                    
+                } else if (i == 0 && j == 0)
+                   temp[j] = 1;
+
+                else {
+                 if(j>0) temp[j]=temp[j-1];
+                 temp[j]+=spo[j];
+                }
+            }
+            spo=temp;
+        }
+        return spo[column-1] ;
+           }
+
 }
 public class Problem10 {
     public static void main(String[] args) {
@@ -39,6 +87,7 @@ public class Problem10 {
         int[][] obstacleGrid = {{0,0,0},{0,1,0},{0,0,0}};
         System.out.println("Recursive:"+s.uniquePathsWithObstaclesRecursive(obstacleGrid));
         System.out.println("Memoization:"+s.uniquePathsWithObstaclesMemoization(obstacleGrid));
-        
+        System.out.println("Tabulation:"+s.uniquePathsWithObstaclesTabulation(obstacleGrid));
+        System.out.println("Space Optimization:"+s.uniquePathsWithObstaclesSpaceOptimization(obstacleGrid));
     }
 }
