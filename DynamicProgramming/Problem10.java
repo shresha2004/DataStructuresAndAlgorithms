@@ -36,27 +36,27 @@ class Solution {
      public int uniquePathsWithObstaclesTabulation(int[][] obstacleGrid) {
         int row = obstacleGrid.length - 1;
         int column = obstacleGrid[0].length - 1;
-        int[][] memo = new int[obstacleGrid.length][obstacleGrid[0].length];
+        int[][] tabu = new int[obstacleGrid.length][obstacleGrid[0].length];
         for (int i = 0; i <= row; i++) {
             for (int j = 0; j <= column; j++) {
                 if (obstacleGrid[i][j] == 1) {
-                    memo[i][j] = 0;
+                    tabu[i][j] = 0;
                     continue;
                 } else if (i == 0 && j == 0)
-                    memo[0][0] = 1;
+                    tabu[0][0] = 1;
 
                 else {
                     int left = 0;
                     int right = 0;
                     if (i > 0)
-                        left = memo[i - 1][j];
+                        left = tabu[i - 1][j];
                     if (j > 0)
-                        right = memo[i][j - 1];
-                    memo[i][j] = left + right;
+                        right = tabu[i][j - 1];
+                    tabu[i][j] = left + right;
                 }
             }
         }
-        return memo[row][column];
+        return tabu[row][column];
     }
      public int uniquePathsWithObstaclesSpaceOptimization(int[][] obstacleGrid) {
         int row = obstacleGrid.length;
