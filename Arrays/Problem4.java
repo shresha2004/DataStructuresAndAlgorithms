@@ -7,11 +7,11 @@ class Solution {
             int temp=nums[n-1];
             for(int j=nums.length-1;j>0;j--){
                 nums[j]=nums[j-1];
-
+ 
             }
             nums[0]=temp;
         }
-        System.out.println(Arrays.toString(nums));
+       System.out.println(Arrays.toString(nums));
         
     }
     public void rotateOptimal(int[] nums, int k) {
