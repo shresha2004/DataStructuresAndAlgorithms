@@ -35,6 +35,28 @@ class Solution {
         int right = triangle.get(row).get(column)+findMinMemoization(row+1,column+1,triangle,memo);
         return memo[row][column]=Math.min(left,right);
     }
+
+
+      public int minimumTotalTabulation(List<List<Integer>> triangle) {
+        int row = triangle.size();
+        int[][] tabu = new int[row][];
+        for(int i=0;i<row;i++){
+           tabu[i] = new int[triangle.get(i).size()];
+            Arrays.fill(tabu[i],Integer.MAX_VALUE);
+        }
+        //Base case
+        for(int i=0;i<tabu[row-1].length;i++)
+            tabu[row-1][i]=triangle.get(row-1).get(i);
+
+        for(int i=row-2;i>=0;i--){
+            for(int j=i;j>=0;j--){
+                int left = triangle.get(i).get(j)+tabu[i+1][j];
+                int right = triangle.get(i).get(j)+tabu[i+1][j+1];
+                tabu[i][j]=Math.min(left,right);
+            }
+        }
+        return tabu[0][0];
+        }
 }
 
 public class Problem12 {
@@ -48,5 +70,6 @@ public class Problem12 {
                         new ArrayList<>(Arrays.asList(4, 1, 8, 3))));
         System.out.println("Recursion:" + s.minimumTotalRecursive(mat));
         System.out.println("Memoization:"+s.minimumTotalMemoization(mat));
+        System.out.println("Tabulation:"+s.minimumTotalTabulation(mat));
     }
 }
