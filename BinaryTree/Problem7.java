@@ -1,4 +1,4 @@
- //Problem:https://leetcode.com/problems/maximum-depth-of-binary-tree/description/
+ //Problem:https://leetcode.com/problems/balanced-binary-tree/description/
  import java.util.*; 
    class TreeNode {
        int val;
@@ -14,15 +14,22 @@
    }
     
 class Solution {
-   public int maxDepth(TreeNode root) {
+    public boolean isBalanced(TreeNode root) {
+        if(root == null) return true;
+         return (checkBalance(root)== -1)? false : true;
+    }
+    private int checkBalance(TreeNode root){
         if(root == null) return 0;
-        int left = maxDepth(root.left);
-        int right = maxDepth(root.right);
+        int left = checkBalance(root.left);
+        if(left == -1) return -1;
+        int right = checkBalance(root.right);
+        if(right == -1) return -1;
+        if(Math.abs(left-right)>1) return -1;
         return 1+Math.max(left,right);
     }
 }
 
-public class Problem6 {
+public class Problem7 {
      public static TreeNode createTree(int[] arr) {
         if (arr.length == 0) return null;
         TreeNode root = new TreeNode(arr[0]);
@@ -45,13 +52,11 @@ public class Problem6 {
         return root;
     }
     public static void main(String[] args) {
-        int[] arr = {3,9,20,15,7}; 
+        int[] arr = {1, 2, 3, 4, 5, 6, 7}; 
         TreeNode root = createTree(arr); 
 
         Solution sol = new Solution();
-        System.out.println("Maximum depth:"+sol.maxDepth(root));
-
+        System.out.println("Solution:"+sol.isBalanced(root));
       
     }
 }
-
