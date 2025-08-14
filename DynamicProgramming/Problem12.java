@@ -57,6 +57,24 @@ class Solution {
         }
         return tabu[0][0];
         }
+         public int minimumTotalSpaceOpti(List<List<Integer>> triangle) {
+        int row = triangle.size();
+        int[] spo = new int[triangle.get(row-1).size()];
+        //Base case
+       for(int i=0;i<spo.length;i++)
+            spo[i]=triangle.get(row-1).get(i);
+
+        for(int i=row-2;i>=0;i--){
+            int[] temp = new int[triangle.get(i).size()];
+            for(int j=i;j>=0;j--){
+                int left = triangle.get(i).get(j)+spo[j];
+                int right = triangle.get(i).get(j)+spo[j+1];
+                temp[j]=Math.min(left,right);
+            }
+            spo =temp;
+        }
+        return spo[0];
+        }
 }
 
 public class Problem12 {
@@ -71,5 +89,6 @@ public class Problem12 {
         System.out.println("Recursion:" + s.minimumTotalRecursive(mat));
         System.out.println("Memoization:"+s.minimumTotalMemoization(mat));
         System.out.println("Tabulation:"+s.minimumTotalTabulation(mat));
+        System.out.println("Space Optimization:"+s.minimumTotalSpaceOpti(mat));
     }
 }
