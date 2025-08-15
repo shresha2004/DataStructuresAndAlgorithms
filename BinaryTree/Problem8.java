@@ -57,7 +57,7 @@ public class Problem8 {
         TreeNode root = createTree(arr); 
 
         Solution sol = new Solution();
-        System.out.println("Brute Force:"+sol.diameterOfBinaryTree(root));
+        System.out.println("Solution:"+sol.diameterOfBinaryTree(root));
 
       
     }
