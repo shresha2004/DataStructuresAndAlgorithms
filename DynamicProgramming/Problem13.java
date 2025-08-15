@@ -45,6 +45,29 @@ class Solution {
         path3 = matrix[row][column]+minPathMemo(row-1,column,matrix,memo);
         return memo[row][column]=Math.min(path1,Math.min(path2,path3));
     }
+
+     public int minFallingPathSumTabulation(int[][] matrix) {
+        int row = matrix.length;
+        int column = matrix[0].length;
+        int minPath = Integer.MAX_VALUE;
+        int[][] tabu = new int[row][column];
+        for(int i=0;i<column;i++)
+            tabu[0][i]=matrix[0][i];
+        for(int i=1;i<row;i++){
+            for(int j=0;j<column;j++){
+               int path1 = Integer.MAX_VALUE;
+               int path2 = Integer.MAX_VALUE;
+               int path3 = Integer.MAX_VALUE;
+               if(j>0) path1 = tabu[i-1][j-1]+matrix[i][j];
+               if(j<column-1) path2 = tabu[i-1][j+1]+matrix[i][j];
+               path3 = tabu[i-1][j]+matrix[i][j];
+               tabu[i][j]=Math.min(path1,Math.min(path2,path3));
+            
+            }
+        }
+        for(int i=0;i<column;i++) minPath = Math.min(minPath,tabu[row-1][i]);
+        return minPath;
+    }
 }
 public class Problem13 {
     public static void main(String[] args) {
@@ -52,6 +75,7 @@ public class Problem13 {
         int[][] matrix =  {{2,1,3},{6,5,4},{7,8,9}};
         System.out.println("Recursive:"+s.minFallingPathSumRecursive(matrix));
         System.out.println("Memoization:"+s.minFallingPathSumRecursive(matrix));
-        
+        System.out.println("Tabulation:"+s.minFallingPathSumTabulation(matrix));
+
     }
 }
