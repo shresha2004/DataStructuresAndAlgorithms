@@ -68,6 +68,30 @@ class Solution {
         for(int i=0;i<column;i++) minPath = Math.min(minPath,tabu[row-1][i]);
         return minPath;
     }
+
+    public int minFallingPathSumSpaceOptimization(int[][] matrix) {
+        int row = matrix.length;
+        int column = matrix[0].length;
+        int minPath = Integer.MAX_VALUE;
+        int[] spo = new int[column];
+           for(int i=0;i<column;i++) spo[i]=matrix[0][i];
+        for(int i=1;i<row;i++){
+            int[] temp  = new int[column];
+            for(int j=0;j<column;j++){
+               int path1 = Integer.MAX_VALUE;
+               int path2 = Integer.MAX_VALUE;
+               int path3 = Integer.MAX_VALUE;
+               if(j>0) path1 = spo[j-1]+matrix[i][j];
+               if(j<column-1) path2 = spo[j+1]+matrix[i][j];
+               path3 = spo[j]+matrix[i][j];
+              temp[j]=Math.min(path1,Math.min(path2,path3));
+            
+            }
+            spo=temp;
+        }
+        for(int i=0;i<column;i++) minPath = Math.min(minPath,spo[i]);
+        return minPath;
+    }
 }
 public class Problem13 {
     public static void main(String[] args) {
@@ -76,6 +100,7 @@ public class Problem13 {
         System.out.println("Recursive:"+s.minFallingPathSumRecursive(matrix));
         System.out.println("Memoization:"+s.minFallingPathSumRecursive(matrix));
         System.out.println("Tabulation:"+s.minFallingPathSumTabulation(matrix));
+        System.out.println("Space Optimization:"+s.minFallingPathSumSpaceOptimization(matrix));
 
     }
 }
