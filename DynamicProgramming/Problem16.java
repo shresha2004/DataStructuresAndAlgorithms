@@ -31,6 +31,31 @@ class Solution {
       return memo[i][checkSum]=(l || r);
       
     }
+
+     static Boolean isSubsetSumTabu(int arr[], int sum) {
+        // code here
+        int n = arr.length;
+        if(n==1) return sum==arr[0];
+        boolean[][] tabu = new boolean[n][sum+1];
+        
+        //base 
+        for(int i=0;i<arr.length;i++)
+            tabu[i][0] = true;
+            
+         if(arr[0]<=sum)   tabu[0][arr[0]] = true;
+            
+        for(int i=1;i<n;i++){
+            for(int target =1;target<=sum;target++){
+                boolean notTake = tabu[i-1][target];
+                boolean take = false;
+                if(arr[i]<= target) take = tabu[i-1][target-arr[i]];
+                tabu[i][target]=take || notTake;
+            }
+        }    
+   
+       
+        return tabu[n-1][sum];
+    }
 }
 public class Problem16 {
     public static void main(String[] args) {
@@ -39,5 +64,6 @@ public class Problem16 {
         int target = 5;
         System.out.println("Recursive:"+s.isSubsetSumMemo(arr, target));
         System.out.println("Memoization:"+s.isSubsetSumMemo(arr, target));
+        System.out.println("Tabulation:"+s.isSubsetSumTabu(arr, target));
     }
 }
