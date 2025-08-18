@@ -56,6 +56,32 @@ class Solution {
        
         return tabu[n-1][sum];
     }
+
+     static Boolean isSubsetSumSpaceOpti(int arr[], int sum) {
+        // code here
+        int n = arr.length;
+        if(n==1) return sum==arr[0];
+        boolean[] spo = new boolean[sum+1];
+       
+        spo[0]=true;
+        if(arr[0]<=sum) spo[arr[0]]= true;
+        //base 
+            
+        for(int i=1;i<n;i++){
+             boolean[] cur = new boolean[sum+1];
+             cur[0]=true;
+            for(int target =1;target<=sum;target++){
+                boolean notTake = spo[target];
+                boolean take = false;
+                if(arr[i]<= target) take =spo[target-arr[i]];
+               cur[target]=take || notTake;
+            }
+            spo = cur;
+        }    
+   
+       
+        return spo[sum];
+    }
 }
 public class Problem16 {
     public static void main(String[] args) {
@@ -65,5 +91,6 @@ public class Problem16 {
         System.out.println("Recursive:"+s.isSubsetSumMemo(arr, target));
         System.out.println("Memoization:"+s.isSubsetSumMemo(arr, target));
         System.out.println("Tabulation:"+s.isSubsetSumTabu(arr, target));
+        System.out.println("Space Optimization:"+s.isSubsetSumSpaceOpti(arr, target));
     }
 }
