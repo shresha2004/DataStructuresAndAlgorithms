@@ -1,4 +1,45 @@
 class Solution {
+     public static int minSubsetSumDifferenceRecursive(int []nums) {
+        // Write your code here.
+        int totalSum = 0;
+        for(int i=0;i<nums.length;i++)
+            totalSum += nums[i];
+       return checkSumDiffRecursive(nums,totalSum,0,0);
+    }
+
+    private static int checkSumDiffRecursive(int[] nums,int totalSum,int curSum,int index){
+        if(index == nums.length){
+            int OtherSum = totalSum - curSum;
+            return Math.abs(OtherSum-curSum);
+        }
+        int pick = checkSumDiffRecursive(nums,totalSum,curSum+nums[index],index+1);
+        int notPick = checkSumDiffRecursive(nums,totalSum,curSum,index+1);
+        int ans = Math.min(pick,notPick);
+        return ans;
+    }
+
+ public static int minSubsetSumDifferenceMemo(int[] nums) {
+        // Write your code here.
+        int totalSum = 0;
+        for(int i=0;i<nums.length;i++)
+            totalSum += nums[i];
+
+       Integer[][] memo = new Integer[nums.length][totalSum+1];
+       return checkSumDiffMemo(nums,totalSum,0,0,memo);
+    }
+
+    private static int checkSumDiffMemo(int[] nums,int totalSum,int curSum,int index,Integer[][] memo){
+        if(index == nums.length){
+            int OtherSum = totalSum - curSum;
+            return Math.abs(OtherSum-curSum);
+        }
+        if(memo[index][curSum] != null) return memo[index][curSum];
+        int pick = checkSumDiffMemo(nums,totalSum,curSum+nums[index],index+1,memo);
+        int notPick = checkSumDiffMemo(nums,totalSum,curSum,index+1,memo);
+        int ans = Math.min(pick,notPick);
+        return memo[index][curSum]=ans;
+    }
+
     public int minimumDifferenceTabulation(int[] nums) {
         int sum = 0;
         for (int i = 0; i < nums.length; i++) {
@@ -72,6 +113,8 @@ public class Problem18 {
     public static void main(String[] args) {
         int[] arr = {1,2,3,4,5};
         Solution s = new Solution();
+        System.out.println("Recurive:"+s.minSubsetSumDifferenceRecursive(arr));
+        System.out.println("Memoization:"+s.minSubsetSumDifferenceMemo(arr));
         System.out.println("Tabualation:"+s.minimumDifferenceTabulation(arr));
         System.out.println("Space Optimiziation:"+s.minSubsetSumDifferenceSpo(arr));
     }
