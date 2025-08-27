@@ -22,7 +22,7 @@
 }
     
 class Solution {
-    public List<Integer> rightSideView(TreeNode root) {
+    public List<Integer> rightSideViewBruteForce(TreeNode root) {
         List<Integer> ans = new ArrayList<>();
         if(root == null) return ans;
         Map<Integer,Integer> map = new TreeMap<>();
@@ -40,6 +40,20 @@ class Solution {
             ans.add(entry.getValue());
         }
         return ans;
+    }
+
+    public List<Integer> rightSideViewOptimal(TreeNode root) {
+        ArrayList<Integer> ans = new ArrayList<>();
+        if(root == null) return ans;
+        traverse(root,0,ans);
+        return ans;
+    }
+    private void traverse(TreeNode node,int level,ArrayList<Integer> ans){
+        if(node == null) return;
+        if(ans.size() == level) ans.add(node.val);
+        if(node.right != null ) traverse(node.right,level+1,ans);
+        if(node.left != null) traverse(node.left,level+1,ans);
+        return;
     }
 }
 
@@ -70,7 +84,8 @@ public class Problem14 {
         TreeNode root = createTree(arr); 
 
         Solution s = new Solution();
-        System.out.println("Solution:"+s.rightSideView(root));
+        System.out.println("BruteForce:"+s.rightSideViewBruteForce(root));
+        System.out.println("Optimal:"+s.rightSideViewOptimal(root));
 
       
     }
