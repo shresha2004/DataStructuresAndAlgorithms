@@ -34,6 +34,46 @@ class Solution {
         int notPick = numberCountMemo(amount,coins,sum,index+1,memo);
         return memo[index][sum]=pick+notPick;
     }
+
+     public int changeTabu(int amount, int[] coins) {
+     int n = coins.length;
+     int[][] tabu = new int[n][amount+1];
+    for(int i=0;i<=amount;i++){
+        if(i%coins[0]==0)tabu[0][i]=1;
+    }
+     for(int i=1;i<n;i++){
+        for(int t=0;t<=amount;t++){
+            int notPick = tabu[i-1][t];
+            int pick = 0;
+            if((coins[i]<=t)) pick=tabu[i][t-coins[i]];
+            tabu[i][t]= pick+notPick;
+        }
+
+     }
+
+     return tabu[n-1][amount];
+    }
+
+     public int changeSpo(int amount, int[] coins) {
+     int n = coins.length;
+     int[] spo = new int[amount+1];
+    for(int i=0;i<=amount;i++){
+        if(i%coins[0]==0) spo[i]=1;
+    }
+     for(int i=1;i<n;i++){
+        int[] temp = new int[amount+1];
+        for(int t=0;t<=amount;t++){
+            int notPick = spo[t];
+            int pick = 0;
+            if((coins[i]<=t)) pick=temp[t-coins[i]];
+            temp[t]= pick+notPick;
+        }
+        spo = temp;
+     }
+
+     return spo[amount];
+    }
+  
 }
 public class Problem15 {
     public static void main(String[] args) {
@@ -41,5 +81,8 @@ public class Problem15 {
        int amount = 5;
        int[] coins = {1,2,5};
        System.out.println("Recursive:"+s.changeRecursive(amount, coins));
+       System.out.println("Memoization:"+s.changeMemo(amount, coins));
+       System.out.println("Tabulation:"+s.changeTabu(amount, coins));
+       System.out.println("Space Optimization:"+s.changeSpo(amount, coins));
     }
 }
