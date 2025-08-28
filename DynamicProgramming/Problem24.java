@@ -39,6 +39,48 @@ class Solution {
             
         return memo[index][N]=Math.max(pick,notPick);
     }
+
+     public int cutRodTabu(int[] price) {
+        // code here
+        int N = price.length;
+        int[][] tabu = new int[N][N+1];
+        for(int i=0;i<=N;i++)
+            tabu[0][i]=i*price[0];
+            
+        for(int i=1;i<N;i++){
+            for(int j=0;j<=N;j++){
+                int notPick =0+ tabu[i-1][j];
+                int pick =Integer.MIN_VALUE;
+                int rodLen = i+1;
+                if(rodLen <= j) 
+                    pick = price[i]+tabu[i][j-rodLen];
+                tabu[i][j]= Math.max(pick,notPick);
+            }
+        }
+        return tabu[N-1][N];
+    }
+
+      public int cutRodSpo(int[] price) {
+        // code here
+        int N = price.length;
+        int[] spo = new int[N+1];
+        for(int i=0;i<=N;i++)
+            spo[i]=i*price[0];
+            
+        for(int i=1;i<N;i++){
+            int[] temp = new int[N+1];
+            for(int j=0;j<=N;j++){
+                int notPick =0+ spo[j];
+                int pick =Integer.MIN_VALUE;
+                int rodLen = i+1;
+                if(rodLen <= j) 
+                    pick = price[i]+temp[j-rodLen];
+                temp[j]= Math.max(pick,notPick);
+            }
+            spo = temp;
+        }
+        return spo[N];
+    }
 }
 public class Problem24 {
     public static void main(String[] args) {
@@ -46,5 +88,7 @@ public class Problem24 {
       int[]  price= {1, 5, 8, 9, 10, 17, 17, 20};
       System.out.println("Recursive:"+s.cutRodRecursive(price));
       System.out.println("Memoization:"+s.cutRodMemo(price));
+      System.out.println("Tabulation:"+s.cutRodTabu(price));
+      System.out.println("Space Optimization:"+s.cutRodSpo(price));
     }
 }
