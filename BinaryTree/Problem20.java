@@ -65,7 +65,7 @@ public class Problem20 {
 
         Solution s = new Solution();
         s.changeTree(root);
-// System.out.println("Solution:"+ s.changeTree(root));
+
       
     }
 }
