@@ -26,7 +26,7 @@ class Solution {
         return null;
     }
 
-      public TreeNode searchBSTOptimal(TreeNode root, int val) {
+      public TreeNode searchBSTBetter(TreeNode root, int val) {
         Queue<TreeNode> q = new LinkedList<>();
         q.offer(root);
         while(!q.isEmpty()){
@@ -36,6 +36,12 @@ class Solution {
             else if(curNode.right != null && val>curNode.val) q.offer(curNode.right);
         }
         return null;
+    }
+
+     public TreeNode searchBSTOptimal(TreeNode root, int val) {
+       while( root != null && root.val != val)
+            root = (val < root.val)? root.left : root.right;
+      return root;
     }
 }
 
@@ -65,7 +71,8 @@ private static TreeNode insertIntoBST(TreeNode root, int val) {
         TreeNode root = createBST(arr); 
         int val = 7;
         Solution s = new Solution();
-        System.out.println("Brute Force:"+s.searchBSTBruteForce(root, val).val);
+        System.out.println("My Brute Force:"+s.searchBSTBruteForce(root, val).val);
+        System.out.println("My Better:"+s.searchBSTBetter(root, val).val);
         System.out.println("Optimal:"+s.searchBSTOptimal(root, val).val);
       
     }
