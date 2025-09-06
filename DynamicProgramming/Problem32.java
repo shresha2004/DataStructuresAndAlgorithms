@@ -67,6 +67,22 @@ class Solution{
         }
         return spo[len2];
      }
+
+      public int numDistinctSpo2(String s, String t) {
+        int len1 = s.length();
+        int len2 = t.length();
+        int[] spo = new int[len2+1];
+        spo[0]=1;
+        for(int i=1;i<=len1;i++){
+            for(int j=len2;j>0;j--){
+                if(s.charAt(i-1)==t.charAt(j-1)){
+                    spo[j]=spo[j-1]+spo[j];
+                }
+            }
+           
+        }
+        return spo[len2];
+     }
 }
 public class Problem32 {
     public static void main(String[] args) {
@@ -76,5 +92,6 @@ public class Problem32 {
         System.out.println("Memoization:"+ss.numDistinctMemo(s, t));
         System.out.println("Tabulation:"+ss.numDistinctTabu(s, t));
         System.out.println("Space Optimization:"+ss.numDistinctSpo(s, t));
+        System.out.println("Space Optimization 2:"+ss.numDistinctSpo2(s, t));
     }
 }
