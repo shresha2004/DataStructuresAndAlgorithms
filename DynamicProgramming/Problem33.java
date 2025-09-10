@@ -41,6 +41,24 @@ class Solution{
             return memo[len1][len2]=Math.min(insert,Math.min(delete,replace));
         }
     }
+    public int minDistanceTabu(String word1, String word2) {
+        int len1 = word1.length();
+        int len2 = word2.length();
+        int[][] tabu = new int[len1+1][len2+1];
+        for(int i=1;i<=len1;i++) tabu[i][0]=i;
+        for(int j=1;j<=len2;j++) tabu[0][j]=j;
+
+        for(int i=1;i<=len1;i++){
+            for(int j=1;j<=len2;j++){
+                if(word1.charAt(i-1)==word2.charAt(j-1))
+                        tabu[i][j]=tabu[i-1][j-1];
+                else tabu[i][j]=1+Math.min(tabu[i-1][j-1],Math.min(tabu[i][j-1],tabu[i-1][j]));
+            }
+        }
+        return tabu[len1][len2];
+    }
+   
+    
 }
 public class Problem33 {
     public static void main(String[] args) {
@@ -48,8 +66,7 @@ public class Problem33 {
        String word1 = "horse", word2 = "ros";
         System.out.println("Recursive:"+s.minDistanceRecursive(word1, word2));
         System.out.println("Memoization:"+s.minDistanceMemo(word1, word2));
+        System.out.println("Tabulation:"+s.minDistanceTabu(word1, word2));
 
     }
 }
-
-
