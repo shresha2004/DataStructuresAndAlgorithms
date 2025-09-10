@@ -57,6 +57,25 @@ class Solution{
         }
         return tabu[len1][len2];
     }
+
+    public int minDistance(String word1, String word2) {
+        int len1 = word1.length();
+        int len2 = word2.length();
+        int[] spo = new int[len2+1];
+        for(int j=1;j<=len2;j++) spo[j]=j;
+
+        for(int i=1;i<=len1;i++){
+            int[] temp = new int[len2+1];
+            temp[0]=i;
+            for(int j=1;j<=len2;j++){
+                if(word1.charAt(i-1)==word2.charAt(j-1))
+                        temp[j]=spo[j-1];
+                else temp[j]=1+Math.min(spo[j-1],Math.min(temp[j-1],spo[j]));
+            }
+            spo =temp;
+        }
+        return spo[len2];
+    }
    
     
 }
@@ -67,6 +86,6 @@ public class Problem33 {
         System.out.println("Recursive:"+s.minDistanceRecursive(word1, word2));
         System.out.println("Memoization:"+s.minDistanceMemo(word1, word2));
         System.out.println("Tabulation:"+s.minDistanceTabu(word1, word2));
-
+        System.out.println("Space Optimization:"+s.minDistanceTabu(word1, word2));
     }
 }
