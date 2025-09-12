@@ -3,20 +3,17 @@ import java.util.Arrays;
 class Solution{
  public int maxProfitRecursive(int[] prices) {
         int len = prices.length;
-        int[][] memo = new int[prices.length][2];
-        for(int i=0;i<prices.length;i++)
-        Arrays.fill(memo[i],-1);
-        return checkMaxProfitRecursive(prices,1,0,memo);
+        return checkMaxProfitMemo(prices,true,0);
     }
-    private int checkMaxProfitRecursive(int[] prices,int buy,int index,int[][] memo){
+    private int checkMaxProfitMemo(int[] prices,boolean buy,int index){
         if(index==prices.length) return 0;
         int maxProfit = 0;
-        if(memo[index][buy] != -1) return memo[index][buy];
-        if(buy==1){
-            maxProfit =Math.max( (-prices[index])+checkMaxProfitRecursive(prices,0,index+1,memo),0+checkMaxProfitRecursive(prices,1,index+1,memo));
+        
+        if(buy){
+            maxProfit =Math.max( (-prices[index])+checkMaxProfitMemo(prices,false,index+1),0+checkMaxProfitMemo(prices,true,index+1));
         }
-        else maxProfit = Math.max(prices[index]+checkMaxProfitRecursive(prices,1,index+1,memo),checkMaxProfitRecursive(prices,0,index+1,memo));
-        return memo[index][buy]=maxProfit;
+        else maxProfit = Math.max(prices[index]+checkMaxProfitMemo(prices,true,index+1),checkMaxProfitMemo(prices,false,index+1));
+        return maxProfit;
     }
      public int maxProfitMemo(int[] prices) {
         int len = prices.length;
@@ -78,6 +75,7 @@ public class Problem36 {
         int[] prices = {7,1,5,3,6,4};
         System.out.println("Recurive:"+s.maxProfitRecursive(prices));
         System.out.println("Memoization:"+s.maxProfitMemo(prices));
+        System.out.println("Tabulation:"+s.maxProfitTabu(prices));
         System.out.println("Space Optimization:"+s.maxProfitSpo(prices));
     }
 }
