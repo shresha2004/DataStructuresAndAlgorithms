@@ -3,16 +3,16 @@ import java.util.Arrays;
 class Solution{
  public int maxProfitRecursive(int[] prices) {
         int len = prices.length;
-        return checkMaxProfitMemo(prices,true,0);
+        return checkMaxProfitRecursive(prices,true,0);
     }
-    private int checkMaxProfitMemo(int[] prices,boolean buy,int index){
+    private int checkMaxProfitRecursive(int[] prices,boolean buy,int index){
         if(index==prices.length) return 0;
         int maxProfit = 0;
         
         if(buy){
-            maxProfit =Math.max( (-prices[index])+checkMaxProfitMemo(prices,false,index+1),0+checkMaxProfitMemo(prices,true,index+1));
+            maxProfit =Math.max( (-prices[index])+checkMaxProfitRecursive(prices,false,index+1),0+checkMaxProfitRecursive(prices,true,index+1));
         }
-        else maxProfit = Math.max(prices[index]+checkMaxProfitMemo(prices,true,index+1),checkMaxProfitMemo(prices,false,index+1));
+        else maxProfit = Math.max(prices[index]+checkMaxProfitRecursive(prices,true,index+1),checkMaxProfitRecursive(prices,false,index+1));
         return maxProfit;
     }
      public int maxProfitMemo(int[] prices) {
