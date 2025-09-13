@@ -56,26 +56,7 @@ class Solution {
         return memo[index][buy][count] = maxProfit;
     }
 
-    public int maxProfit(int[] prices) {
-        int[][] spo = new int[2][3];
-
-        for (int index = prices.length - 1; index >= 0; index--) {
-            int[][] temp = new int[2][3];
-            for (int buy = 0; buy < 2; buy++) {
-                for (int count = 1; count <= 2; count++) {
-                    int maxProfit = 0;
-                    if (buy == 1)
-                        maxProfit = Math.max(-prices[index] + spo[0][count], 0 + spo[1][count]);
-                    else
-                        maxProfit = Math.max(prices[index] + spo[1][count - 1], 0 + spo[0][count]);
-
-                    temp[buy][count] = maxProfit;
-                }
-            }
-            spo = temp;
-        }
-        return spo[1][2];
-    }
+   
 
     public int maxProfitTabu(int[] prices) {
         int[][][] tabu = new int[prices.length + 1][2][3];
