@@ -66,6 +66,24 @@ class Solution {
         }
         return spo[0];
     }
+
+    public int lengthOfLISOptimal(int[] nums) {
+        int n = nums.length;
+        int[] mostOpti = new int[n];
+        Arrays.fill(mostOpti,1);
+        for(int index=0;index<n;index++){
+            for(int prev = 0;prev<index;prev++){
+                if(nums[prev]<nums[index]){
+                    mostOpti[index]=Math.max(mostOpti[index],mostOpti[prev]+1);
+                }
+            }
+        }
+        int maxLen =0;
+        for(int len : mostOpti){
+            maxLen = Math.max(len,maxLen);
+        }
+        return maxLen;
+    }
     
 }
 
@@ -77,5 +95,6 @@ public class Problem41 {
        System.out.println("Memoization:"+s.lengthOfLISMemo(nums));
        System.out.println("Tabulation:"+s.lengthOfLISTabu(nums));
        System.out.println("Space Optimization:"+s.lengthOfLISSpo(nums));
+       System.out.println("Optimal"+s.lengthOfLISOptimal(nums));
     }
 }
