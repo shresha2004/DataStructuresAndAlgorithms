@@ -33,6 +33,40 @@ class Solution {
          return memo[index][prev+1]=len;
             
     }
+
+    public int lengthOfLISTabu(int[] nums) {
+        int n = nums.length;
+        int[][] tabu = new int[n+1][n+1];
+        for(int index = n-1;index>=0;index--){
+            for(int prevIndex = index-1;prevIndex>=-1;prevIndex--){
+                int notTake = 0+tabu[index+1][prevIndex+1];
+                int take= 0;
+                if(prevIndex == -1 || nums[index]>nums[prevIndex]){
+                   take = 1+tabu[index+1][index+1];
+                }
+                tabu[index][prevIndex+1]=Math.max(take,notTake);
+            }
+        }
+        return tabu[0][0];
+    }
+     public int lengthOfLISSpo(int[] nums) {
+        int n = nums.length;
+        int[] spo = new int[n+1];
+        for(int index = n-1;index>=0;index--){
+            int[] temp = new int[n+1];
+            for(int prevIndex = index-1;prevIndex>=-1;prevIndex--){
+                int notTake = 0+spo[prevIndex+1];
+                int take= 0;
+                if(prevIndex == -1 || nums[index]>nums[prevIndex]){
+                   take = 1+spo[index+1];
+                }
+                temp[prevIndex+1]=Math.max(take,notTake);
+            }
+            spo=temp;
+        }
+        return spo[0];
+    }
+    
 }
 
 public class Problem41 {
@@ -41,5 +75,7 @@ public class Problem41 {
        int[] nums = {10,9,2,5,3,7,101,18};
        System.out.println("Recursive:"+s.lengthOfLISRecursive(nums));
        System.out.println("Memoization:"+s.lengthOfLISMemo(nums));
+       System.out.println("Tabulation:"+s.lengthOfLISTabu(nums));
+       System.out.println("Space Optimization:"+s.lengthOfLISSpo(nums));
     }
 }
