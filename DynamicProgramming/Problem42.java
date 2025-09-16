@@ -40,7 +40,7 @@ class Solution{
 public class Problem42 {
     public static void main(String[] args) {
         Solution s = new Solution();
-       int arr[] = {10, 20, 3, 40};
+        int arr[] = {10, 20, 3, 40};
         System.out.println("Solution:"+s.getLIS(arr));
 
     }
