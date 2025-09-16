@@ -1,30 +1,47 @@
 //Problem:https://www.geeksforgeeks.org/problems/printing-longest-increasing-subsequence/1
 
-import java.util.Arrays;
+import java.util.*;
 
 class Solution{
-  public int lengthOfLISTabu(int[] nums) {
-        int n = nums.length;
-        int[][] tabu = new int[n+1][n+1];
-        for(int index = n-1;index>=0;index--){
-            for(int prevIndex = index-1;prevIndex>=-1;prevIndex--){
-                int notTake = 0+tabu[index+1][prevIndex+1];
-                int take= 0;
-                if(prevIndex == -1 || nums[index]>nums[prevIndex]){
-                   take = 1+tabu[index+1][index+1];
+   public ArrayList<Integer> getLIS(int arr[]) {
+        // Code here
+        int n = arr.length;
+        ArrayList<Integer> ans = new ArrayList<>();
+        int[] maxLenArr = new int[n];
+        Arrays.fill(maxLenArr,1);
+        int[] hash = new int[n];
+        for(int i=0;i<n;i++)
+            hash[i]=i;
+        
+        for(int index =0;index<n;index++){
+            for(int prev = 0;prev<index;prev++){
+                if(arr[prev]<arr[index] && (1+maxLenArr[prev])>maxLenArr[index]){
+                    maxLenArr[index]=1+maxLenArr[prev];
+                    hash[index]=prev;
                 }
-                tabu[index][prevIndex+1]=Math.max(take,notTake);
             }
         }
-        System.out.println(Arrays.deepToString(tabu));
-        return tabu[0][0];
+        int maxLen = 0;
+        int maxInd = 0;
+        for(int i=0;i<n;i++){
+            if(maxLenArr[i]>maxLen){
+                maxLen = maxLenArr[i];
+                maxInd = i;
+            }
+        }
+        while(ans.size() != maxLen){
+            ans.add(0,arr[maxInd]);
+            maxInd = hash[maxInd];
+        }
+        return ans;
+        
     }
 }
 public class Problem42 {
     public static void main(String[] args) {
         Solution s = new Solution();
        int arr[] = {10, 20, 3, 40};
-        System.out.println(s.lengthOfLISTabu(arr));
+        System.out.println("Solution:"+s.getLIS(arr));
 
     }
 }
