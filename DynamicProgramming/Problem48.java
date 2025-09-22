@@ -27,6 +27,5 @@ public class Problem48 {
         Solution s = new Solution();
         int[] arr= {2, 1, 3, 4};
         System.out.println("Solution:"+s.matrixMultiplication(arr));
-
     }
 }
