@@ -49,6 +49,30 @@ class Solution {
         } 
         return memo[i][j]=min;
     }
+     public int minCostTabu(int n, int[] cuts) {
+        int len = cuts.length;
+        int[] editCuts = new int[len + 2];
+        for (int i = 0; i < len; i++)
+            editCuts[i] = cuts[i];
+        editCuts[len] = 0;//Add 0 for intial pointing;
+        editCuts[len + 1] = n;//Add len of cuts for end pointing.After sorting it will be corrected
+        mergeSort(editCuts, 0, len + 1);
+        int[][] tabu = new int[editCuts.length][editCuts.length];
+        int eLen = editCuts.length;
+
+        for (int i = len; i >0; i--) {
+            for (int j = 1; j <= len; j++) {
+                int min = Integer.MAX_VALUE;
+                if(i>j) continue;
+                for (int ind = i; ind <= j; ind++) {
+                    int cost = (editCuts[j + 1] - editCuts[i - 1]) + tabu[i][ind - 1]   + tabu[ ind + 1][ j];                        
+                    min = Math.min(min, cost);
+                }
+                tabu[i][j]=min;
+            }
+        }
+        return tabu[1][len];
+    }
 
 
     private void mergeSort(int[] nums, int start, int end) {
@@ -92,5 +116,6 @@ public class Problem49 {
         int[] cuts = {1,3,4,5};
         System.out.println("Recursive:"+s.minCostRecursive(n, cuts));
         System.out.println("Memoization:"+s.minCostMemo(n, cuts));
+        System.out.println("Tabulation:"+s.minCostTabu(n, cuts));
     }
 }
