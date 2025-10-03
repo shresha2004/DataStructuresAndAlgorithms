@@ -48,6 +48,25 @@ class Solution {
         }
         return memo[i] = minPartition;
     }
+     public int minCutTabu(String s) {
+        int len = s.length();
+        int[] tabu = new int[len + 1];
+
+        for (int i = len-1; i>=0; i--) {
+            int minPartition = Integer.MAX_VALUE;
+            for (int j = i; j < len; j++) {
+                if (checkPalindrome(s.substring(i,j+1))) {
+                    int partition = 1 +tabu[j+1];
+                    minPartition = Math.min(partition, minPartition);
+                }
+            }
+            tabu[i]=minPartition;
+        }
+
+   
+        return tabu[0]-1;
+    }
+
 
     private boolean checkPalindrome(String s) {
         int start = 0;
@@ -66,5 +85,6 @@ public class Problem52 {
         String ss = "aab";
         System.out.println("Recursive:" + s.minCutRecursive(ss));
         System.out.println("Memoization:"+s.minCutMemo(ss));
+        System.out.println("Tabulation:"+s.minCutTabu(ss));
     }
 }
