@@ -1,4 +1,6 @@
 //Problem:https://leetcode.com/problems/max-consecutive-ones-iii/description/
+
+//Just think problem of max len of subarrays that have minimum k 0s that's it 
 class Solution {
     public int longestOnesBruteForce(int[] nums, int k) {
        int n = nums.length;
