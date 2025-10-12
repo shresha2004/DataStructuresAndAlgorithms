@@ -15,7 +15,7 @@ class Solution {
         return count;
     }
 
-    public int numberOfSubarrays(int[] nums, int k) {
+    public int numberOfSubarraysOptimal(int[] nums, int k) {
         return helper(nums, k) - helper(nums, k - 1);
     }
 
@@ -47,7 +47,7 @@ public class Problem6 {
         Solution s = new Solution();
         int[] nums = { 1, 1, 2, 1, 1 };
         int k = 3;
-        System.out.println("Brute Force:" + s.numberOfSubarrays(nums, k));
-        // System.out.println("Optimal:"+s.);
+        System.out.println("Brute Force:" + s.numberOfSubarraysBruteForce(nums, k));
+        System.out.println("Optimal:"+s.numberOfSubarraysOptimal(nums, k));
     }
 }
