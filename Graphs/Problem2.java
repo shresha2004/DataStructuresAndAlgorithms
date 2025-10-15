@@ -2,27 +2,17 @@
 import java.util.*;
 
 class Solution {
-    public int findCircleNum(int[][] isConnected) {
+      public int findCircleNum(int[][] isConnected) {
         ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
         int m = isConnected.length;
         int n = isConnected[0].length;
-        for(int i=0;i<m;i++) adj.add(new ArrayList<>());
-        for(int i=0;i<m;i++){
-            for(int j=0;j<n;j++){
-                if(isConnected[i][j]==1){
-                    int u=i;
-                    int v = j;
-                    adj.get(u).add(v);
-                    adj.get(v).add(u);
-                }
-            }
-        }
+
         boolean[] isVisited = new boolean[m];
         int count=0;
         for(int i=0;i<m;i++){
         
         if(!isVisited[i]){
-          bfs(adj,m,i,isVisited);
+          bfs(isConnected,m,i,isVisited);
            count+=1;
         }
         }
@@ -30,16 +20,16 @@ class Solution {
         return count;
     }
 
-    private void bfs(ArrayList<ArrayList<Integer>> adj, int V, int start,boolean[] isVisited){
+    private void bfs(int[][] matrix, int V, int start,boolean[] isVisited){
         Queue<Integer> q = new LinkedList<>();
         q.offer(start);
         isVisited[start]=true;
         while(!q.isEmpty()){
             int node = q.poll();
-            for(int next: adj.get(node)){
-                if(!isVisited[next]){
-                    isVisited[next]=true;
-                    q.offer(next);
+            for(int i=0;i<matrix[0].length;i++){
+                if( matrix[node][i]==1 && !isVisited[i]){
+                    isVisited[i]=true;
+                    q.offer(i);
                 }
             }
         }
