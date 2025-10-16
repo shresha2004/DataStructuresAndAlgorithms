@@ -15,6 +15,5 @@ public class Problem8 {
     public static void main(String[] args) {
         Solution s = new Solution();
         System.out.println("Optimal:"+s.climbStairsOptimal(45));
-        System.out.println("Optimal:"+s.climbStairsOptimal(45));
     }
 }

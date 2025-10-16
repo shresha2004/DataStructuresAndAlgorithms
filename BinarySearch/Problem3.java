@@ -1,4 +1,4 @@
-package BinarySearch;
+
  class Solution {
     public  int lowerBound(int []arr, int n, int x) {
         // Write your code here
@@ -24,7 +24,7 @@ public class Problem3 {
     public static void main(String[] args) {
         Solution s = new Solution();
         int[] arr={1 ,2, 2, 3, 3 ,5};
-        int x = 0;
+        int x = 4;
         int n = 6;
         System.out.println("Optimal:"+s.lowerBound(arr,n,x));
       

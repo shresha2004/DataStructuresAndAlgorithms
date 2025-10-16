@@ -1,7 +1,3 @@
-
-
-
-
 class Solution{
     int evenlyDivides(int N){
       int   count=0;
