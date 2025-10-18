@@ -44,7 +44,7 @@ public class DFSTraversal {
         addEdge(adj, 1, 3);
         addEdge(adj, 2, 4);
 
-       
+       System.out.println(adj);
         Solution sol = new Solution();
         System.out.println("Solution:"+sol.dfs(adj));
        
