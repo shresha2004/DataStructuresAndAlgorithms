@@ -22,7 +22,7 @@ class TreeNode {
 }
 
 class Solution {
-    public int countNodes(TreeNode root) {
+    public int countNodesBruteForce(TreeNode root) {
         if (root == null)
             return 0;
         Queue<TreeNode> q = new LinkedList<>();
@@ -37,6 +37,33 @@ class Solution {
                 q.offer(curNode.right);
         }
         return count;
+    }
+      public int countNodesBetter(TreeNode root) {
+       if(root == null)  return 0;
+        return 1+(countNodesBetter(root.left))+(countNodesBetter(root.right));
+    }
+     public int countNodesOptimal(TreeNode root) {
+       if(root == null)  return 0;
+       int lH = findLeftHeight(root);
+       int rH = findRightHeight(root);
+       if(lH == rH) return (1<<lH)-1;
+        return 1+(countNodesOptimal(root.left))+(countNodesOptimal(root.right));
+    }
+    private int findLeftHeight(TreeNode root){
+       int height = 0;
+        while(root != null){
+            height++;
+            root=root.left;
+        }
+        return height;
+    }
+    private int findRightHeight(TreeNode root){
+      int  height = 0;
+        while(root != null){
+            height++;
+            root=root.right;
+        }
+        return height;
     }
 }
 
@@ -69,7 +96,9 @@ public class Problem23 {
         TreeNode root = createTree(arr);
 
         Solution s = new Solution();
-        System.out.println("Solution:" + s.countNodes(root));
+        System.out.println("Brute Force:" + s.countNodesBruteForce(root));
+        System.out.println("Better"+s.countNodesBetter(root));
+        System.out.println("Optimal:"+s.countNodesOptimal(root));
 
     }
 }
