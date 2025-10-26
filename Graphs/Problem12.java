@@ -36,6 +36,7 @@ public class Problem12 {
     public static void main(String[] args) {
        int V = 4, edges[][] ={{0, 1}, {1, 2}, {2, 0}, {2, 3}};
        Solution sol = new Solution();
+       
        System.out.println("Solution:"+sol.isCyclic(V, edges));
     }
 }
