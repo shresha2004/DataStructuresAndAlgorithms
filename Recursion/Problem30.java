@@ -1,4 +1,4 @@
-//Problem:https://leetcode.com/problems/word-break/description/
+//Problem:https://www.geeksforgeeks.org/problems/rat-in-a-maze-problem/1
 import java.util.ArrayList;
 import java.util.List;
 class Solution{
