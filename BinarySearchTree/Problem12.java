@@ -1,7 +1,34 @@
 //Problem:https://leetcode.com/problems/two-sum-iv-input-is-a-bst/description/
-import java.util.ArrayList;
+
+import java.util.*;
+ class BSTIterator{
+    boolean reverse;
+    Stack<TreeNode> st = new Stack<>();
+    BSTIterator(TreeNode root,boolean reverse){
+        this.reverse = reverse;
+        pushAll(root);
+    }
+    public int next(){
+        TreeNode node = st.pop();
+        //Inorder
+        if(!reverse) pushAll(node.left);
+        
+        else pushAll(node.right);
+        return node.val;
+    }
+    public boolean hasNext(){
+        return !st.isEmpty();
+    }
+    public void pushAll(TreeNode node){
+        while(node != null){
+            st.push(node);
+            if(reverse) node=node.left;
+            else node = node.right;
+        }
+    }
+ }
 class Solution {
-    public boolean findTarget(TreeNode root, int k) {
+    public boolean findTargetBruteForce(TreeNode root, int k) {
       ArrayList<Integer> arr = new ArrayList<>();
        inorder(root,arr);
        int left = 0;
@@ -19,6 +46,20 @@ class Solution {
         inorder(root.left,arr);
         arr.add(root.val);
         inorder(root.right,arr);
+    }
+     public boolean findTargetoptimal(TreeNode root, int k) {
+     BSTIterator l = new BSTIterator(root,true);
+     BSTIterator r = new BSTIterator(root,false);
+
+     int left = l.next();
+     int right = r.next();
+     while(left < right){
+        int sum = left + right;
+        if(sum == k) return true;
+        if(sum > k) right = r.next();
+        else left = l.next();
+     }
+     return false;
     }
 }
 
@@ -49,6 +90,7 @@ private static TreeNode insertIntoBST(TreeNode root, int val) {
         TreeNode root = createBST(arr); 
 
         Solution s = new Solution();
-        System.out.println("Brute Force:"+s.findTarget(root, 5));
+        System.out.println("Brute Force:"+s.findTargetBruteForce(root, 5));
+        System.out.println("Optimal:"+s.findTargetoptimal(root, 5));
     }
 }
