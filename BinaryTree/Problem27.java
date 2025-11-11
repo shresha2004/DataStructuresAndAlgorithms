@@ -85,6 +85,7 @@ public class Problem27 {
 
         Solution s = new Solution();
         System.out.println("Morris Traversal:"+s.inorderTraversal(root));
+        System.out.println("Morris Traversal:"+s.preorderTraversal(root));
       
     }
 }
