@@ -102,6 +102,21 @@ class HeapDataStructure{
         arr.set(a,arr.get(b));
         arr.set(b,temp);
     }
+
+    public PriorityQueue<Integer> minHeapUsingQueue(ArrayList<Integer> arr){
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        for(int ele : arr){
+            pq.offer(ele);
+        }
+        return pq;
+    }
+    public Queue<Integer> maxHeapUsingQueue(ArrayList<Integer> arr){
+        PriorityQueue<Integer> pq = new PriorityQueue<>((a,b)-> b-a);
+        for(int ele : arr){
+            pq.offer(ele);
+        }
+        return pq;
+    }
 }
 public class HeapOperations {
     public static void main(String[] args) {
@@ -125,5 +140,9 @@ public class HeapOperations {
         System.out.println("Heapify:"+convertToHeap);
 
         System.out.println("Heapsort:"+hp.heapSort(convertToHeap));
+
+        ArrayList<Integer> arr = new ArrayList<>(Arrays.asList(50,60,80,10,100));
+        System.out.println("Minheap using priority queue:"+hp.minHeapUsingQueue(arr));
+        System.out.println("Maxheap using priority queue:"+hp.maxHeapUsingQueue(arr));
     }
 }
