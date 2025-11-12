@@ -69,6 +69,34 @@ class HeapDataStructure{
             }
             
     }
+    public void heapifyMinheap(ArrayList<Integer> arr, int index){
+        int largest = index;
+        int leftIndex = 2*largest;
+        int rightIndex = (2*largest)+1;
+        if(leftIndex <= arr.size()-1 && arr.get(leftIndex)<arr.get(largest))
+            largest = leftIndex;
+         if(rightIndex <= arr.size()-1 && arr.get(rightIndex)<arr.get(largest))
+            largest=rightIndex;
+        
+            if(largest != index){
+                swap(arr, largest, index);
+                heapifyMinheap(arr, largest);
+            }
+            
+    }
+
+    public ArrayList<Integer> heapSort(ArrayList<Integer> arr){
+        int n = arr.size()-1;
+        while(n > 1){
+            //Swap root node with last node
+            swap(arr,1, n);
+                n--;
+            //Correct the heap till n-1
+            heapifyMinheap(arr, 1);
+           
+        }
+        return arr;
+    }
     private void swap(ArrayList<Integer> arr,int a,int b){
         int temp = arr.get(a);
         arr.set(a,arr.get(b));
@@ -95,5 +123,7 @@ public class HeapOperations {
           hp.heapify(convertToHeap,i);
         }
         System.out.println("Heapify:"+convertToHeap);
+
+        System.out.println("Heapsort:"+hp.heapSort(convertToHeap));
     }
 }
