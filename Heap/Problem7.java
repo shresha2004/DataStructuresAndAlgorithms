@@ -29,6 +29,27 @@ class Solution {
         return pq.peek();
             
     }
+
+     public static int kthLargestOptimal(int[] arr, int k) {
+        // code here
+                PriorityQueue<Integer> pq = new PriorityQueue<>((a,b)->a-b);
+        int n = arr.length;
+        for(int i=0;i<n;i++){
+            int sum = 0;
+            for(int j=i;j<n;j++){
+                sum += arr[j];
+                if(pq.size()<k) pq.offer(sum);
+                else{
+                    if(sum>pq.peek()){
+                        pq.poll();
+                        pq.offer(sum);
+                    }
+                }
+
+            }
+        }
+       return pq.peek();
+    }
 }
 
 
@@ -39,5 +60,6 @@ public static void main(String[] args) {
     int k = 2 ;
     Solution s = new Solution();
     System.out.println("Brute force:"+s.kthLargestBruteForce(arr, k));
+    System.out.println("Optimal:"+s.kthLargestOptimal(arr, k));
 }
 }
