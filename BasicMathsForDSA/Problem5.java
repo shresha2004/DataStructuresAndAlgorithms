@@ -3,6 +3,8 @@ class Solution{
     public long sumOfDivisors(int N){
         long sum =0;
         for(int i=1;i<=N;i++){
+            //N / i tells how many numbers from 1..N are multiples of i.
+            //Multiply i by that count → total contribution of divisor i
             sum=sum+(N/i)*i;
         }
         return sum;
