@@ -13,6 +13,8 @@ public class Problem33 {
         String s = "codeleet";
         int[] indices = {4,5,6,7,0,2,1,3};
         Solution ss = new Solution();
+
+        
         System.out.println("Answer:"+ss.restoreString(s, indices));
     }
 }
