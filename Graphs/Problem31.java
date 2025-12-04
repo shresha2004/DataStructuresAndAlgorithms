@@ -33,6 +33,7 @@ public class Problem31 {
     public static void main(String[] args) {
        int V = 5, edges[][] = {{1, 3, 2}, {4, 3, -1}, {2, 4, 1}, {1, 2, 1}, {0, 1, 5}}, src = 0;
        Solution s = new Solution();
+       
        System.out.println("Answer:"+Arrays.toString(s.bellmanFord(V, edges, src)));
     }
 }
