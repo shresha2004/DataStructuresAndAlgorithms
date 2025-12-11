@@ -17,6 +17,6 @@ public class Problem76 {
         Solution s = new Solution();
       int[]  nums = {1,2,2,1};
       int k = 1;
-        System.out.println("Solution:"+s.countKDifference(nums, 1));
+        System.out.println("Solution:"+s.countKDifference(nums, k));
     }
 }
